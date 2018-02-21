@@ -13,6 +13,15 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera {
     public partial class IngresarPelicula {
         
         /// <summary>
+        /// Control textEspere.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl textEspere;
+        
+        /// <summary>
         /// Control IngresarNuevo.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::DevExpress.Web.ASPxButton IngresarNuevo;
+        
+        /// <summary>
+        /// Control PanelIngreso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxCallbackPanel PanelIngreso;
         
         /// <summary>
         /// Control LblSelecPeli.
@@ -40,15 +58,6 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera {
         protected global::DevExpress.Web.ASPxComboBox CmbSelecPeli;
         
         /// <summary>
-        /// Control PanelIngreso.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxCallbackPanel PanelIngreso;
-        
-        /// <summary>
         /// Control ImgLogo.
         /// </summary>
         /// <remarks>
@@ -67,13 +76,31 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera {
         protected global::System.Web.UI.WebControls.Label LblLogo;
         
         /// <summary>
-        /// Control FupLogo.
+        /// Control FileUpload1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FupLogo;
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        
+        /// <summary>
+        /// Control LblSalas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel LblSalas;
+        
+        /// <summary>
+        /// Control CmbSalas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox CmbSalas;
         
         /// <summary>
         /// Control lablNombre.
@@ -146,6 +173,78 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::DevExpress.Web.ASPxComboBox cmbEstado;
+        
+        /// <summary>
+        /// Control LblFechaDesde.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel LblFechaDesde;
+        
+        /// <summary>
+        /// Control FDesde.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxDateEdit FDesde;
+        
+        /// <summary>
+        /// Control LblFechaHasta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel LblFechaHasta;
+        
+        /// <summary>
+        /// Control Fhasta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxDateEdit Fhasta;
+        
+        /// <summary>
+        /// Control HDesde.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel HDesde;
+        
+        /// <summary>
+        /// Control HoraDesde.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox HoraDesde;
+        
+        /// <summary>
+        /// Control HHasta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel HHasta;
+        
+        /// <summary>
+        /// Control HoraHasta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox HoraHasta;
         
         /// <summary>
         /// Control registrar.

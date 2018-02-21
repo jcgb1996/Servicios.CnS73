@@ -22,15 +22,27 @@ namespace Servicios.CnS73
                 using (Cn_S73Entities bd = new Cn_S73Entities())
                 {
                     var datos = (from a in bd.EM_CATALOGO
+                                 join b in bd.EM_TIPOPELICULA1 on a.IDTIPOPELICULA equals b.IDTIPOPELICULA
+                                 where a.ESTADO == Estados.Estados.ACTIVO
+                                 && b.ESTADO == Estados.Estados.ACTIVO
                                  select new Catalogo
                                  {
                                      IDPELICULA = a.IDPELICULA,
                                      APODO =  a.APODO,
                                      CODIGOPILI= a.CODIGOPILI,
                                      ESTADO= a.ESTADO,
-                                     NOMBRE= a.NOMBRE,
-                                     TIPOPELICULA= a.TIPOPELICULA,
-                                     URL = a.URL
+                                     IDTIPOPELICULA = a.IDTIPOPELICULA ?? 0,
+                                     TIPOPELICULA = b.DESCRIPCION,                                     
+                                     NOMBRE = a.NOMBRE,
+                                     URL = a.URL,
+                                     IDSALA = a.IDSALA,
+                                     FECHADESDE = a.FECHADESDE,
+                                     FECHAHASTA = a.FECHAHASTA,
+                                     HORADESDE= a.HORADESDE,
+                                     HORAHASTA = a.HORAHASTA,
+                                     NUMEROENTRADAS = a.NUMEROENTRADAS,
+                                     NUMEROENTRADASDISPO = a.NUMEROENTRADASDISPO
+
                                  }).ToList();
                     return datos;
                 }
@@ -43,8 +55,58 @@ namespace Servicios.CnS73
            
 
             }
-       
 
-      
+        public List<TipoPelicula> ConsultarTipoPelicula() {
+            try
+            {
+                using (Cn_S73Entities bd = new Cn_S73Entities())
+                {
+                    var TipoPelicula = (from a in bd.EM_TIPOPELICULA1
+                                        where a.ESTADO == Estados.Estados.ACTIVO
+                                        select new TipoPelicula
+                                        {
+                                           DESCRIPCION = a.DESCRIPCION,
+                                           IDTIPOPELICULA = a.IDTIPOPELICULA
+                                        }
+                                      ).ToList();
+                    return TipoPelicula;
+                }
+
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<Salas> ConsultarSala()
+        {
+            List<Salas> cata = null;
+            try
+            {
+                using (Cn_S73Entities bd = new Cn_S73Entities())
+                {
+                    var salas = (from a in bd.EM_SALA
+                                 where a.ESTADO == Estados.Estados.ACTIVO 
+                                 select new Salas
+                                 {
+                                   IDSALA=  a.IDSALA,
+                                     DESCRIPCION=  a.DESCRIPCION,
+                                     ESTADO =a.ESTADO
+                                 }).ToList();
+                    cata = salas;
+                }
+            }catch(Exception ex)
+            {
+
+            }
+
+            return cata;
+        }
+
+        public void saludar()
+        {
+            
+        }
     }
 }

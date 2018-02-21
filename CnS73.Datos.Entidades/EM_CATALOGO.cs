@@ -19,7 +19,18 @@ namespace CnS73.Datos.Entidades
         public string APODO { get; set; }
         public string CODIGOPILI { get; set; }
         public string ESTADO { get; set; }
-        public string TIPOPELICULA { get; set; }
+        public Nullable<int> IDTIPOPELICULA { get; set; }
         public string URL { get; set; }
+        public Nullable<int> IDSALA { get; set; }
+        public Nullable<System.DateTime> FECHADESDE { get; set; }
+        public Nullable<System.DateTime> FECHAHASTA { get; set; }
+        public Nullable<decimal> HORADESDE { get; set; }
+        public Nullable<decimal> HORAHASTA { get; set; }
+        public Nullable<int> NUMEROENTRADAS { get; set; }
+        public Nullable<int> IDFUNCION { get; set; }
+        public Nullable<int> NUMEROENTRADASDISPO { get; set; }
+    
+        public virtual EM_SALA EM_SALA { get; set; }
+        public virtual EM_TIPOPELICULA1 EM_TIPOPELICULA1 { get; set; }
     }
 }

@@ -26,6 +26,18 @@ namespace Web.Cine.ProyectoS73.CatalogoServicesClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/Datos", ReplyAction="http://tempuri.org/ICatalogoProyecto/DatosResponse")]
         System.Threading.Tasks.Task<Servicios.CnS73.Catalogo[]> DatosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/ConsultarTipoPelicula", ReplyAction="http://tempuri.org/ICatalogoProyecto/ConsultarTipoPeliculaResponse")]
+        Servicios.CnS73.TipoPelicula[] ConsultarTipoPelicula();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/ConsultarTipoPelicula", ReplyAction="http://tempuri.org/ICatalogoProyecto/ConsultarTipoPeliculaResponse")]
+        System.Threading.Tasks.Task<Servicios.CnS73.TipoPelicula[]> ConsultarTipoPeliculaAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/ConsultarSala", ReplyAction="http://tempuri.org/ICatalogoProyecto/ConsultarSalaResponse")]
+        Servicios.CnS73.Salas[] ConsultarSala();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/ConsultarSala", ReplyAction="http://tempuri.org/ICatalogoProyecto/ConsultarSalaResponse")]
+        System.Threading.Tasks.Task<Servicios.CnS73.Salas[]> ConsultarSalaAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +81,22 @@ namespace Web.Cine.ProyectoS73.CatalogoServicesClient {
         
         public System.Threading.Tasks.Task<Servicios.CnS73.Catalogo[]> DatosAsync() {
             return base.Channel.DatosAsync();
+        }
+        
+        public Servicios.CnS73.TipoPelicula[] ConsultarTipoPelicula() {
+            return base.Channel.ConsultarTipoPelicula();
+        }
+        
+        public System.Threading.Tasks.Task<Servicios.CnS73.TipoPelicula[]> ConsultarTipoPeliculaAsync() {
+            return base.Channel.ConsultarTipoPeliculaAsync();
+        }
+        
+        public Servicios.CnS73.Salas[] ConsultarSala() {
+            return base.Channel.ConsultarSala();
+        }
+        
+        public System.Threading.Tasks.Task<Servicios.CnS73.Salas[]> ConsultarSalaAsync() {
+            return base.Channel.ConsultarSalaAsync();
         }
     }
 }

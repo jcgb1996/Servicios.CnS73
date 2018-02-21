@@ -197,7 +197,6 @@
     <Content Include="Content\vendor\morrisjs\morris.min.js" />
     <Content Include="Content\vendor\raphael\raphael.js" />
     <Content Include="Content\vendor\raphael\raphael.min.js" />
-    <Content Include="Imagenes\FOCUS_CINE.jpg" />
     <Content Include="Imagenes\Loading_icon.gif" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -253,6 +252,8 @@
     <Content Include="Content\vendor\font-awesome\scss\_stacked.scss" />
     <Content Include="Content\vendor\font-awesome\scss\_variables.scss" />
     <Content Include="Properties\DataSources\Servicios.CnS73.Catalogo.datasource" />
+    <Content Include="Properties\DataSources\Servicios.CnS73.Salas.datasource" />
+    <Content Include="Properties\DataSources\Servicios.CnS73.TipoPelicula.datasource" />
     <None Include="Service References\CatalogoServicesClient\service.wsdl" />
     <None Include="Service References\CatalogoServicesClient\service.xsd">
       <SubType>Designer</SubType>

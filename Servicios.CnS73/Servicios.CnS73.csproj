@@ -53,7 +53,8 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Catalogo.cs" />
+    <Compile Include="Data Contracts\Catalogo.cs" />
+    <Compile Include="Estados\Estados.cs" />
     <Compile Include="ICatalogoProyecto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CcatalogoProyecto.cs" />
@@ -68,9 +69,7 @@
       <Name>CnS73.Datos.Entidades</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data Contracts\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

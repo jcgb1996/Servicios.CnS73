@@ -79,10 +79,48 @@
                 border-bottom: #FA9535;
             }
     </style>
+    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
+
         function PanelIngreso_Callback_Finish(s, e) {
             LoadingPanel.Hide();
         }
+
+        function GuardarPeli() {
+            PanelIngreso.PerformCallback(2);
+            LoadingPanel.Show();
+
+        }
+
+        $(document).ready(function () {
+            $('.capaModal').css("display", "none");
+        });
+
+        function Ingresar() {
+           // var lala = LblLogo.val();
+            // alert(lala);
+
+            ASPxCallbackGuardar.PerformCallback();
+            LoadingPanel.Show();
+            if (TextNombre.GetText().trim() != ""
+              && TextApodo.GetText().trim() != ""
+              && CmbTipoPeli.GetText().trim() != ""
+              && cmbEstado.GetText().trim() != ""
+              && FDesde.GetText().trim() != ""
+              && Fhasta.GetText().trim() != ""
+              && HoraDesde.GetText().trim() != ""
+              && HoraHasta.GetText().trim() != "") {
+            } else {
+                $('.capaModal').css("display", "block");
+                $('.capaModal').show();
+            }
+
+
+        }
+        function CallbckGuardar() {
+            LoadingPanel.Hide();
+        }
+
 
     </script>
 </asp:Content>
@@ -92,47 +130,63 @@
             <h2 id="titulo">CREAR <span>PELICULA</span></h2>
             <br>
             <br>
+            <div class="capaModal">
+                <div class="capaContent">
+                    <%-- <img src="../imagenes/cargando2.gif" alt="Loading" />--%>
+                    <label style="color: coral;" id="textEspere" visible="true" runat="server">
+                        TODOS LOS CAMPOS SON OBLIGATORIOS<span></span></label>
+                </div>
+            </div>
+
+
             <table>
                 <tr>
-                    <dx:ASPxButton ID="IngresarNuevo" AutoPostBack="false" CssClass="input" runat="server" Text="Ingresar Una Nueva Pelicula"></dx:ASPxButton>
+                    <dx:ASPxButton ID="IngresarNuevo" AutoPostBack="false" CssClass="input" runat="server" Text="Ingresar Una Nueva Pelicula">
+                        <ClientSideEvents Click="function Guardar(){
+                            GuardarPeli();
+                           
+                            }" />
+                    </dx:ASPxButton>
                 </tr>
             </table>
-            <table>
-                <tr>
-                    <td>
-                        <dx:ASPxLabel ID="LblSelecPeli" CssClass="input" runat="server" Text="Seleccionar Pelicula"></dx:ASPxLabel>
 
-                    </td>
-                    <td>
-                        <dx:ASPxComboBox NullText="- Seleccione -"  ID="CmbSelecPeli" AutoPostBack="false" runat="server" CssClass="input" ValueType="System.String">
-                            <ClientSideEvents SelectedIndexChanged="function Seleccion(){
-                                LoadingPanel.Show();
-                                PanelIngreso.PerformCallback();
-                                }" />
-
-                        </dx:ASPxComboBox>
-
-
-                    </td>
-                </tr>
-            </table>
 
             <dx:ASPxCallbackPanel ID="PanelIngreso" OnCallback="PanelIngreso_Callback" ClientInstanceName="PanelIngreso" CssClass="" runat="server">
                 <ClientSideEvents EndCallback="PanelIngreso_Callback_Finish" />
                 <SettingsLoadingPanel Enabled="false" />
                 <PanelCollection>
                     <dx:PanelContent>
+                        <table>
+                            <tr>
+                                <td>
+                                    <dx:ASPxLabel ID="LblSelecPeli" Visible="true" CssClass="input" runat="server" Text="Peliculas: "></dx:ASPxLabel>
+
+                                </td>
+                                <td>
+                                    <dx:ASPxComboBox NullText="- Seleccione -" Visible="true" TabIndex="24" ID="CmbSelecPeli" AutoPostBack="false" runat="server" CssClass="input" ValueType="System.String">
+                                        <ClearButton Visibility="True">
+                                        </ClearButton>
+                                        <ClientSideEvents SelectedIndexChanged="function Seleccion(){
+                                LoadingPanel.Show();
+                                PanelIngreso.PerformCallback(1);
+                                }" />
+
+                                    </dx:ASPxComboBox>
+
+                                </td>
+                            </tr>
+                        </table>
                         <div class="control-group">
                             <%--<asp:Image ID="Image1" runat="server" />--%>
                             <img alt="" visible="true" style="width: 266px; height: 250px; border: 3px solid #32C2CD;"
                                 runat="server" id="ImgLogo" />
                         </div>
                         <div class="control-group">
-                            <asp:Label ID="LblLogo" Visible="true" runat="server" Text="Logo:" CssClass="control-label"></asp:Label>
+                            <asp:Label ID="LblLogo" Visible="true" runat="server" Text="Logo:" CssClass="control-label"></asp:Label>                            
+
                             <div class="">
                                 <div>
-                                    <asp:FileUpload ID="FupLogo" runat="server" class="" TabIndex="2"
-                                        accept="jpg" AllowMultiple="false" Visible="true" Enabled="true" maxlength="3" />
+                                    <asp:FileUpload accept="jpg"  ID="FileUpload1" runat="server"  maxlength="3" />
                                 </div>
                             </div>
 
@@ -141,18 +195,29 @@
                         <br />
                         <table>
                             <tr>
+
+                                <td>
+                                    <dx:ASPxLabel ID="LblSalas" Visible="true" CssClass="input" runat="server" Text="Salas: "></dx:ASPxLabel>
+                                    <%--<dx:ASPxLabel ID="lblSalas" Visible="true" CssClass="input" runat="server" Text="Salas: "></dx:ASPxLabel>--%>
+
+                                </td>
+                                <td>
+                                    <dx:ASPxComboBox ID="CmbSalas" ClientInstanceName="CmbSalas" CssClass="input" NullText="- SELECCIONE -" AutoPostBack="false" Visibility="True" runat="server" ValueType="System.String"></dx:ASPxComboBox>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>
                                     <dx:ASPxLabel ID="lablNombre" runat="server" CssClass="input" Text="Nombre"></dx:ASPxLabel>
                                 </td>
                                 <td>
-                                    <dx:ASPxTextBox ID="TextNombre" AutoPostBack="false" CssClass="input" runat="server" Width="170px"></dx:ASPxTextBox>
+                                    <dx:ASPxTextBox ID="TextNombre" ClientInstanceName="TextNombre" Native="true" AutoPostBack="false" CssClass="input" runat="server" Width="170px"></dx:ASPxTextBox>
                                 </td>
                                 <td>
                                     <dx:ASPxLabel ID="lblApodo" CssClass="input" runat="server" Text="Apodo:"></dx:ASPxLabel>
                                 </td>
 
                                 <td>
-                                    <dx:ASPxTextBox ID="TextApodo" AutoPostBack="false" CssClass="input" runat="server" Width="170px"></dx:ASPxTextBox>
+                                    <dx:ASPxTextBox ID="TextApodo" ClientInstanceName="TextApodo" AutoPostBack="false" CssClass="input" runat="server" Width="170px"></dx:ASPxTextBox>
                                 </td>
 
                             </tr>
@@ -162,8 +227,9 @@
 
                                 </td>
                                 <td>
-                                    <dx:ASPxComboBox ID="CmbTipoPeli" ClientInstanceName="CmbTipoPeli" AutoPostBack="false" runat="server" 
-                                        CssClass="input" NullText="- Seleccione -" TabIndex="24"  Width="170px" ValueType="System.String"></dx:ASPxComboBox>
+                                    <dx:ASPxComboBox ID="CmbTipoPeli" ClientInstanceName="CmbTipoPeli" AutoPostBack="false" runat="server"
+                                        CssClass="input" NullText="- Seleccione -" TabIndex="24" Width="170px" ValueType="System.String">
+                                    </dx:ASPxComboBox>
                                 </td>
                                 <td>
                                     <dx:ASPxLabel ID="ASPxLabel1" CssClass="input" runat="server" Text="Estado"></dx:ASPxLabel>
@@ -171,7 +237,7 @@
                                 </td>
                                 <td>
                                     <dx:ASPxComboBox Width="98%" Height="30" NullText="-Seleccione-" ID="cmbEstado" ClientInstanceName="cmbEstado"
-                                        AutoPostBack="false"  CssClass="input" runat="server" ValueType="System.String" TabIndex="24">
+                                        AutoPostBack="false" CssClass="input" runat="server" ValueType="System.String" TabIndex="24">
                                         <ClearButton Visibility="True">
                                         </ClearButton>
                                         <Items>
@@ -180,18 +246,55 @@
                                         </Items>
                                     </dx:ASPxComboBox>
 
-                                    
+
                                 </td>
+                                <td></td>
 
                             </tr>
-                            <tr style="float: unset;">
+                            <tr>
                                 <td>
-                                    <dx:ASPxButton ID="registrar" AutoPostBack="false" CssClass="input" runat="server" Text="REGISTRAR"></dx:ASPxButton>
+                                    <dx:ASPxLabel Visible="false" ID="LblFechaDesde" CssClass="input" runat="server" Text="Desde"></dx:ASPxLabel>
                                 </td>
                                 <td>
-                                    <dx:ASPxButton ID="cancelar" AutoPostBack="false" CssClass="input" runat="server" Text="CANCELAR"></dx:ASPxButton>
+                                    <dx:ASPxDateEdit Visible="false" NullText="__/__/__" ID="FDesde" CssClass="input" ClientInstanceName="FDesde" AutoPostBack="false" runat="server"></dx:ASPxDateEdit>
+                                </td>
+                                <td>
+                                    <dx:ASPxLabel Visible="false" ID="LblFechaHasta" CssClass="input" runat="server" Text="Hasta"></dx:ASPxLabel>
+                                </td>
+                                <td>
+                                    <dx:ASPxDateEdit Visible="false" NullText="__/__/__" ID="Fhasta" CssClass="input" ClientInstanceName="Fhasta" AutoPostBack="false" runat="server"></dx:ASPxDateEdit>
                                 </td>
                             </tr>
+
+                            <tr>
+                                <td>
+                                    <dx:ASPxLabel Visible="false" ID="HDesde" ClientInstanceName="HDesde" CssClass="input" runat="server" Text="H. Desde"></dx:ASPxLabel>
+
+                                </td>
+
+                                <td>
+                                    <dx:ASPxTextBox Visible="false" NullText="00:00" ID="HoraDesde" ClientInstanceName="HoraDesde" AutoPostBack="false" CssClass="input" runat="server" Width="70px"></dx:ASPxTextBox>
+                                </td>
+                                <td>
+                                    <dx:ASPxLabel Visible="false" ID="HHasta" CssClass="input" runat="server" Text="H.Hasta"></dx:ASPxLabel>
+                                </td>
+                                <td>
+                                    <dx:ASPxTextBox Visible="false" NullText="00:00" ID="HoraHasta" ClientInstanceName="HoraHasta" AutoPostBack="false" CssClass="input" runat="server" Width="70px"></dx:ASPxTextBox>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <dx:ASPxButton ID="registrar" OnClick="registrar_Click2"  ClientInstanceName="registrar" AutoPostBack="false" CssClass="input" runat="server" Text="REGISTRAR">
+                                        
+                                    </dx:ASPxButton>
+                                </td>
+                                <td>
+                                    <dx:ASPxButton ID="cancelar" AutoPostBack="false" CssClass="input" runat="server" Text="CANCELAR">
+                                    </dx:ASPxButton>
+                                </td>
+                            </tr>
+
 
                         </table>
                         <br />
@@ -209,6 +312,5 @@
         <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel" Modal="true" HorizontalAlign="Center" VerticalAlign="Middle">
             <Image Url="../Imagenes/Loading_icon.gif" Height="50px" Width="80px"></Image>
         </dx:ASPxLoadingPanel>
-
     </div>
 </asp:Content>

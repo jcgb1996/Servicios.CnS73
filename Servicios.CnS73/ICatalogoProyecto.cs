@@ -16,6 +16,13 @@ namespace Servicios.CnS73
         [OperationContract]
         List<Catalogo> Datos();
 
+        [OperationContract]
+        List<TipoPelicula> ConsultarTipoPelicula();
+        [OperationContract]
+        List<Salas> ConsultarSala();
+        [OperationContract]
+        void saludar();
+
     }
 
     

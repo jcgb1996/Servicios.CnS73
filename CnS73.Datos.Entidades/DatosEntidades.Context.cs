@@ -26,5 +26,7 @@ namespace CnS73.Datos.Entidades
         }
     
         public DbSet<EM_CATALOGO> EM_CATALOGO { get; set; }
+        public DbSet<EM_SALA> EM_SALA { get; set; }
+        public DbSet<EM_TIPOPELICULA1> EM_TIPOPELICULA1 { get; set; }
     }
 }

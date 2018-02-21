@@ -66,6 +66,12 @@
     <Compile Include="EM_CATALOGO.cs">
       <DependentUpon>DatosEntidades.tt</DependentUpon>
     </Compile>
+    <Compile Include="EM_SALA.cs">
+      <DependentUpon>DatosEntidades.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EM_TIPOPELICULA1.cs">
+      <DependentUpon>DatosEntidades.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

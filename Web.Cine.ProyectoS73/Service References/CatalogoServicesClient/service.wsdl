@@ -19,6 +19,18 @@
   <wsdl:message name="ICatalogoProyecto_Datos_OutputMessage">
     <wsdl:part name="parameters" element="tns:DatosResponse" />
   </wsdl:message>
+  <wsdl:message name="ICatalogoProyecto_ConsultarTipoPelicula_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarTipoPelicula" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogoProyecto_ConsultarTipoPelicula_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarTipoPeliculaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogoProyecto_ConsultarSala_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarSala" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogoProyecto_ConsultarSala_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarSalaResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICatalogoProyecto">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/ICatalogoProyecto/GetData" message="tns:ICatalogoProyecto_GetData_InputMessage" />
@@ -27,6 +39,14 @@
     <wsdl:operation name="Datos">
       <wsdl:input wsaw:Action="http://tempuri.org/ICatalogoProyecto/Datos" message="tns:ICatalogoProyecto_Datos_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICatalogoProyecto/DatosResponse" message="tns:ICatalogoProyecto_Datos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarTipoPelicula">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogoProyecto/ConsultarTipoPelicula" message="tns:ICatalogoProyecto_ConsultarTipoPelicula_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogoProyecto/ConsultarTipoPeliculaResponse" message="tns:ICatalogoProyecto_ConsultarTipoPelicula_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarSala">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogoProyecto/ConsultarSala" message="tns:ICatalogoProyecto_ConsultarSala_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogoProyecto/ConsultarSalaResponse" message="tns:ICatalogoProyecto_ConsultarSala_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICatalogoProyecto" type="tns:ICatalogoProyecto">
@@ -42,6 +62,24 @@
     </wsdl:operation>
     <wsdl:operation name="Datos">
       <soap:operation soapAction="http://tempuri.org/ICatalogoProyecto/Datos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarTipoPelicula">
+      <soap:operation soapAction="http://tempuri.org/ICatalogoProyecto/ConsultarTipoPelicula" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarSala">
+      <soap:operation soapAction="http://tempuri.org/ICatalogoProyecto/ConsultarSala" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

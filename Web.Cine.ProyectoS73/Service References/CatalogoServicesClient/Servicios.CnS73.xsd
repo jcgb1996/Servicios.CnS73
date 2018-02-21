@@ -11,11 +11,47 @@
       <xs:element minOccurs="0" name="APODO" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CODIGOPILI" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ESTADO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FECHADESDE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FECHAHASTA" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="HORADESDE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="HORAHASTA" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IDFUNCION" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="IDPELICULA" type="xs:int" />
+      <xs:element minOccurs="0" name="IDTIPOPELICULA" type="xs:int" />
       <xs:element minOccurs="0" name="NOMBRE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NUMEROENTRADAS" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="NUMEROENTRADASDISPO" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="TIPOPELICULA" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Catalogo" nillable="true" type="tns:Catalogo" />
+  <xs:complexType name="ArrayOfTipoPelicula">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TipoPelicula" nillable="true" type="tns:TipoPelicula" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTipoPelicula" nillable="true" type="tns:ArrayOfTipoPelicula" />
+  <xs:complexType name="TipoPelicula">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DESCRIPCION" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ESTADO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IDTIPOPELICULA" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TipoPelicula" nillable="true" type="tns:TipoPelicula" />
+  <xs:complexType name="ArrayOfSalas">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Salas" nillable="true" type="tns:Salas" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSalas" nillable="true" type="tns:ArrayOfSalas" />
+  <xs:complexType name="Salas">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DESCRIPCION" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ESTADO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IDSALA" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Salas" nillable="true" type="tns:Salas" />
 </xs:schema>

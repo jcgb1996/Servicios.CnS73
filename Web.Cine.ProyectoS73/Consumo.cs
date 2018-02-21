@@ -28,8 +28,44 @@ namespace Web.Cine.ProyectoS73
 
             return cata;
         }
-        
 
-       
+        public List <TipoPelicula> ConsultarTipoPelicula()
+        {
+            List<TipoPelicula> cata = null;
+            CatalogoProyectoClient catalgo = null;
+            try
+            {
+                catalgo = new CatalogoProyectoClient(); 
+                cata = catalgo.ConsultarTipoPelicula().ToList();
+
+
+            }catch(Exception ex)
+            {
+                catalgo.Close();
+                cata = null;
+            }
+            return cata;
+        }
+
+        public List<Salas> ConsultarSala()
+        {
+            CatalogoProyectoClient salasClient = null;
+            List<Salas> sala = null;
+            try
+            {
+                salasClient = new CatalogoProyectoClient();
+                sala = salasClient.ConsultarSala().ToList();
+            }
+            catch(Exception ex)
+            {
+                salasClient.Close();
+            }
+            
+
+            return sala;
+        }
+
+
+
     }
 }
