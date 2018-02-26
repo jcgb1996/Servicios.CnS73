@@ -17,6 +17,7 @@ namespace CnS73.Datos.Entidades
         public EM_SALA()
         {
             this.EM_CATALOGO = new HashSet<EM_CATALOGO>();
+            this.EM_TABLAVENTAS = new HashSet<EM_TABLAVENTAS>();
         }
     
         public int IDSALA { get; set; }
@@ -24,5 +25,6 @@ namespace CnS73.Datos.Entidades
         public string ESTADO { get; set; }
     
         public virtual ICollection<EM_CATALOGO> EM_CATALOGO { get; set; }
+        public virtual ICollection<EM_TABLAVENTAS> EM_TABLAVENTAS { get; set; }
     }
 }

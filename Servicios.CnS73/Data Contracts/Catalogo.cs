@@ -28,6 +28,8 @@ namespace Servicios.CnS73
         [DataMember]
         public string URL { get; set; }
         [DataMember]
+        public string SALA { get; set; }
+        [DataMember]
         public Nullable<int> IDSALA { get; set; }
         [DataMember]
         public Nullable<System.DateTime> FECHADESDE { get; set; }
@@ -43,6 +45,12 @@ namespace Servicios.CnS73
         public Nullable<int> IDFUNCION { get; set; }
         [DataMember]
         public Nullable<int> NUMEROENTRADASDISPO { get; set; }
+        [DataMember]
+        public string DESCRIPCION { get; set; }
+        [DataMember]
+        public Nullable<decimal> DURACION { get; set; }
+        [DataMember]
+        public Nullable<decimal> PRECIO { get; set; }
     }
 
     [DataContract]
@@ -68,5 +76,38 @@ namespace Servicios.CnS73
         public string DESCRIPCION { get; set; }
         [DataMember]
         public string ESTADO { get; set; }
+    }
+
+    [DataContract]
+    [Serializable]
+    public class Cine
+    {
+        public int IDCINE { get; set; }
+        [DataMember]
+        public string NOMBRECOMPLEJO { get; set; }
+        [DataMember]
+        public string RUC { get; set; }
+        [DataMember]
+        public string ESTADO { get; set; }
+    }
+    [DataContract]
+    [Serializable]
+    public class Ventas
+    {
+        [DataMember]
+        public int IDVENTA { get; set; }
+        [DataMember]
+        public string NOMBRECLIENTE { get; set; }
+        [DataMember]
+        public Nullable<int> NUMEROENTRADAS { get; set; }
+        [DataMember]
+        public Nullable<int> IDPELICULA { get; set; }
+        [DataMember]
+        public Nullable<int> ID_SALA { get; set; }
+        [DataMember]
+        public Nullable<decimal> TOTALPAGAR { get; set; }
+        [DataMember]
+        public Nullable<int> IDTIPOPELICULA { get; set; }
+        
     }
 }

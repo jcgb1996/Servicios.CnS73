@@ -13,13 +13,22 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera {
     public partial class IngresarPelicula {
         
         /// <summary>
-        /// Control textEspere.
+        /// Control ScriptManager1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl textEspere;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        
+        /// <summary>
+        /// Control UcNotificaciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Web.Cine.ProyectoS73.UcNotificaciones UcNotificaciones;
         
         /// <summary>
         /// Control IngresarNuevo.
@@ -49,13 +58,13 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera {
         protected global::DevExpress.Web.ASPxLabel LblSelecPeli;
         
         /// <summary>
-        /// Control CmbSelecPeli.
+        /// Control CmbSelecPelicula.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox CmbSelecPeli;
+        protected global::DevExpress.Web.ASPxComboBox CmbSelecPelicula;
         
         /// <summary>
         /// Control ImgLogo.
@@ -94,13 +103,13 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera {
         protected global::DevExpress.Web.ASPxLabel LblSalas;
         
         /// <summary>
-        /// Control CmbSalas.
+        /// Control CmbSala.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox CmbSalas;
+        protected global::DevExpress.Web.ASPxComboBox CmbSala;
         
         /// <summary>
         /// Control lablNombre.
@@ -112,13 +121,13 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera {
         protected global::DevExpress.Web.ASPxLabel lablNombre;
         
         /// <summary>
-        /// Control TextNombre.
+        /// Control ASPxTextBox1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox TextNombre;
+        protected global::DevExpress.Web.ASPxTextBox ASPxTextBox1;
         
         /// <summary>
         /// Control lblApodo.
@@ -130,13 +139,13 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera {
         protected global::DevExpress.Web.ASPxLabel lblApodo;
         
         /// <summary>
-        /// Control TextApodo.
+        /// Control ASPxTextBox2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox TextApodo;
+        protected global::DevExpress.Web.ASPxTextBox ASPxTextBox2;
         
         /// <summary>
         /// Control lblTipoPeli.
@@ -148,13 +157,13 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera {
         protected global::DevExpress.Web.ASPxLabel lblTipoPeli;
         
         /// <summary>
-        /// Control CmbTipoPeli.
+        /// Control CmbTipoPelicula.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox CmbTipoPeli;
+        protected global::DevExpress.Web.ASPxComboBox CmbTipoPelicula;
         
         /// <summary>
         /// Control ASPxLabel1.
@@ -166,13 +175,13 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera {
         protected global::DevExpress.Web.ASPxLabel ASPxLabel1;
         
         /// <summary>
-        /// Control cmbEstado.
+        /// Control CmbEstados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox cmbEstado;
+        protected global::DevExpress.Web.ASPxComboBox CmbEstados;
         
         /// <summary>
         /// Control LblFechaDesde.
@@ -220,13 +229,13 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera {
         protected global::DevExpress.Web.ASPxLabel HDesde;
         
         /// <summary>
-        /// Control HoraDesde.
+        /// Control HoraDesdes2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox HoraDesde;
+        protected global::DevExpress.Web.ASPxTimeEdit HoraDesdes2;
         
         /// <summary>
         /// Control HHasta.
@@ -238,13 +247,85 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera {
         protected global::DevExpress.Web.ASPxLabel HHasta;
         
         /// <summary>
-        /// Control HoraHasta.
+        /// Control HoraHastas1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox HoraHasta;
+        protected global::DevExpress.Web.ASPxTimeEdit HoraHastas1;
+        
+        /// <summary>
+        /// Control ASPxLabel2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel ASPxLabel2;
+        
+        /// <summary>
+        /// Control NumeroEntradas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox NumeroEntradas;
+        
+        /// <summary>
+        /// Control lblDuracion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel lblDuracion;
+        
+        /// <summary>
+        /// Control Duracion1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTimeEdit Duracion1;
+        
+        /// <summary>
+        /// Control lblPrecioPelicula.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel lblPrecioPelicula;
+        
+        /// <summary>
+        /// Control SpinValor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit SpinValor;
+        
+        /// <summary>
+        /// Control lblDescrip.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxLabel lblDescrip;
+        
+        /// <summary>
+        /// Control Descripcion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea Descripcion;
         
         /// <summary>
         /// Control registrar.
@@ -254,15 +335,6 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::DevExpress.Web.ASPxButton registrar;
-        
-        /// <summary>
-        /// Control cancelar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton cancelar;
         
         /// <summary>
         /// Control LoadingPanel.

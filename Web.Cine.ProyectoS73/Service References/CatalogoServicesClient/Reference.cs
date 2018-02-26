@@ -38,6 +38,42 @@ namespace Web.Cine.ProyectoS73.CatalogoServicesClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/ConsultarSala", ReplyAction="http://tempuri.org/ICatalogoProyecto/ConsultarSalaResponse")]
         System.Threading.Tasks.Task<Servicios.CnS73.Salas[]> ConsultarSalaAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/IngresarPelicula", ReplyAction="http://tempuri.org/ICatalogoProyecto/IngresarPeliculaResponse")]
+        string IngresarPelicula(Servicios.CnS73.Catalogo NuevaPelicula);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/IngresarPelicula", ReplyAction="http://tempuri.org/ICatalogoProyecto/IngresarPeliculaResponse")]
+        System.Threading.Tasks.Task<string> IngresarPeliculaAsync(Servicios.CnS73.Catalogo NuevaPelicula);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/saludar", ReplyAction="http://tempuri.org/ICatalogoProyecto/saludarResponse")]
+        void saludar();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/saludar", ReplyAction="http://tempuri.org/ICatalogoProyecto/saludarResponse")]
+        System.Threading.Tasks.Task saludarAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/ConsultarCine", ReplyAction="http://tempuri.org/ICatalogoProyecto/ConsultarCineResponse")]
+        Servicios.CnS73.Cine[] ConsultarCine();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/ConsultarCine", ReplyAction="http://tempuri.org/ICatalogoProyecto/ConsultarCineResponse")]
+        System.Threading.Tasks.Task<Servicios.CnS73.Cine[]> ConsultarCineAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/CatalogoPorIdPelicula", ReplyAction="http://tempuri.org/ICatalogoProyecto/CatalogoPorIdPeliculaResponse")]
+        Servicios.CnS73.Catalogo[] CatalogoPorIdPelicula(int idPelicula);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/CatalogoPorIdPelicula", ReplyAction="http://tempuri.org/ICatalogoProyecto/CatalogoPorIdPeliculaResponse")]
+        System.Threading.Tasks.Task<Servicios.CnS73.Catalogo[]> CatalogoPorIdPeliculaAsync(int idPelicula);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/IngrsarVentas", ReplyAction="http://tempuri.org/ICatalogoProyecto/IngrsarVentasResponse")]
+        string IngrsarVentas(Servicios.CnS73.Ventas Datos);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/IngrsarVentas", ReplyAction="http://tempuri.org/ICatalogoProyecto/IngrsarVentasResponse")]
+        System.Threading.Tasks.Task<string> IngrsarVentasAsync(Servicios.CnS73.Ventas Datos);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/ActualizarTablaCatalogo", ReplyAction="http://tempuri.org/ICatalogoProyecto/ActualizarTablaCatalogoResponse")]
+        string ActualizarTablaCatalogo(int numeroEntradas, int idPelicula);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICatalogoProyecto/ActualizarTablaCatalogo", ReplyAction="http://tempuri.org/ICatalogoProyecto/ActualizarTablaCatalogoResponse")]
+        System.Threading.Tasks.Task<string> ActualizarTablaCatalogoAsync(int numeroEntradas, int idPelicula);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -97,6 +133,54 @@ namespace Web.Cine.ProyectoS73.CatalogoServicesClient {
         
         public System.Threading.Tasks.Task<Servicios.CnS73.Salas[]> ConsultarSalaAsync() {
             return base.Channel.ConsultarSalaAsync();
+        }
+        
+        public string IngresarPelicula(Servicios.CnS73.Catalogo NuevaPelicula) {
+            return base.Channel.IngresarPelicula(NuevaPelicula);
+        }
+        
+        public System.Threading.Tasks.Task<string> IngresarPeliculaAsync(Servicios.CnS73.Catalogo NuevaPelicula) {
+            return base.Channel.IngresarPeliculaAsync(NuevaPelicula);
+        }
+        
+        public void saludar() {
+            base.Channel.saludar();
+        }
+        
+        public System.Threading.Tasks.Task saludarAsync() {
+            return base.Channel.saludarAsync();
+        }
+        
+        public Servicios.CnS73.Cine[] ConsultarCine() {
+            return base.Channel.ConsultarCine();
+        }
+        
+        public System.Threading.Tasks.Task<Servicios.CnS73.Cine[]> ConsultarCineAsync() {
+            return base.Channel.ConsultarCineAsync();
+        }
+        
+        public Servicios.CnS73.Catalogo[] CatalogoPorIdPelicula(int idPelicula) {
+            return base.Channel.CatalogoPorIdPelicula(idPelicula);
+        }
+        
+        public System.Threading.Tasks.Task<Servicios.CnS73.Catalogo[]> CatalogoPorIdPeliculaAsync(int idPelicula) {
+            return base.Channel.CatalogoPorIdPeliculaAsync(idPelicula);
+        }
+        
+        public string IngrsarVentas(Servicios.CnS73.Ventas Datos) {
+            return base.Channel.IngrsarVentas(Datos);
+        }
+        
+        public System.Threading.Tasks.Task<string> IngrsarVentasAsync(Servicios.CnS73.Ventas Datos) {
+            return base.Channel.IngrsarVentasAsync(Datos);
+        }
+        
+        public string ActualizarTablaCatalogo(int numeroEntradas, int idPelicula) {
+            return base.Channel.ActualizarTablaCatalogo(numeroEntradas, idPelicula);
+        }
+        
+        public System.Threading.Tasks.Task<string> ActualizarTablaCatalogoAsync(int numeroEntradas, int idPelicula) {
+            return base.Channel.ActualizarTablaCatalogoAsync(numeroEntradas, idPelicula);
         }
     }
 }

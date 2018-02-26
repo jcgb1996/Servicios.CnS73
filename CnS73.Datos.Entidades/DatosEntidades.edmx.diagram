@@ -4,12 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="569a9537dd5b4d2a8af7c5fb59cc8001" Name="Diagram1">
-        <EntityTypeShape EntityType="Cn_S73Model.Modelo.Entidades.Datos.EM_CATALOGO" Width="1.5" PointX="4.25" PointY="0.75" />
-        <EntityTypeShape EntityType="Cn_S73Model.Modelo.Entidades.Datos.EM_SALA" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Cn_S73Model.Modelo.Entidades.Datos.EM_TIPOPELICULA1" Width="1.5" PointX="0.75" PointY="3.75" />
+      <Diagram DiagramId="569a9537dd5b4d2a8af7c5fb59cc8001" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="Cn_S73Model.Modelo.Entidades.Datos.EM_CATALOGO" Width="1.5" PointX="3" PointY="2.375" />
+        <EntityTypeShape EntityType="Cn_S73Model.Modelo.Entidades.Datos.EM_CINE" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Cn_S73Model.Modelo.Entidades.Datos.EM_SALA" Width="1.5" PointX="0.75" PointY="4.125" />
+        <EntityTypeShape EntityType="Cn_S73Model.Modelo.Entidades.Datos.EM_TABLAVENTAS" Width="1.5" PointX="5.25" PointY="3.625" />
+        <EntityTypeShape EntityType="Cn_S73Model.Modelo.Entidades.Datos.EM_TIPOPELICULA1" Width="1.5" PointX="0.75" PointY="7.5" />
+        <AssociationConnector Association="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_CATALOGO_EM_CINE" />
         <AssociationConnector Association="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_CATALOGO_EM_SALA" />
         <AssociationConnector Association="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_CATALOGO_EM_TIPOPELICULA1" />
+        <AssociationConnector Association="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_TABLAVENTAS_EM_CATALOGO" />
+        <AssociationConnector Association="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_TABLAVENTAS_EM_SALA" />
+        <AssociationConnector Association="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_TABLAVENTAS_EM_TIPOPELICULA1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

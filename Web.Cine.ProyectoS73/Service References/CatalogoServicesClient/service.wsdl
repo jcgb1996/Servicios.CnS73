@@ -31,6 +31,42 @@
   <wsdl:message name="ICatalogoProyecto_ConsultarSala_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConsultarSalaResponse" />
   </wsdl:message>
+  <wsdl:message name="ICatalogoProyecto_IngresarPelicula_InputMessage">
+    <wsdl:part name="parameters" element="tns:IngresarPelicula" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogoProyecto_IngresarPelicula_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IngresarPeliculaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogoProyecto_saludar_InputMessage">
+    <wsdl:part name="parameters" element="tns:saludar" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogoProyecto_saludar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:saludarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogoProyecto_ConsultarCine_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarCine" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogoProyecto_ConsultarCine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarCineResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogoProyecto_CatalogoPorIdPelicula_InputMessage">
+    <wsdl:part name="parameters" element="tns:CatalogoPorIdPelicula" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogoProyecto_CatalogoPorIdPelicula_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CatalogoPorIdPeliculaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogoProyecto_IngrsarVentas_InputMessage">
+    <wsdl:part name="parameters" element="tns:IngrsarVentas" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogoProyecto_IngrsarVentas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IngrsarVentasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogoProyecto_ActualizarTablaCatalogo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarTablaCatalogo" />
+  </wsdl:message>
+  <wsdl:message name="ICatalogoProyecto_ActualizarTablaCatalogo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarTablaCatalogoResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICatalogoProyecto">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/ICatalogoProyecto/GetData" message="tns:ICatalogoProyecto_GetData_InputMessage" />
@@ -47,6 +83,30 @@
     <wsdl:operation name="ConsultarSala">
       <wsdl:input wsaw:Action="http://tempuri.org/ICatalogoProyecto/ConsultarSala" message="tns:ICatalogoProyecto_ConsultarSala_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICatalogoProyecto/ConsultarSalaResponse" message="tns:ICatalogoProyecto_ConsultarSala_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IngresarPelicula">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogoProyecto/IngresarPelicula" message="tns:ICatalogoProyecto_IngresarPelicula_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogoProyecto/IngresarPeliculaResponse" message="tns:ICatalogoProyecto_IngresarPelicula_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="saludar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogoProyecto/saludar" message="tns:ICatalogoProyecto_saludar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogoProyecto/saludarResponse" message="tns:ICatalogoProyecto_saludar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCine">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogoProyecto/ConsultarCine" message="tns:ICatalogoProyecto_ConsultarCine_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogoProyecto/ConsultarCineResponse" message="tns:ICatalogoProyecto_ConsultarCine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CatalogoPorIdPelicula">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogoProyecto/CatalogoPorIdPelicula" message="tns:ICatalogoProyecto_CatalogoPorIdPelicula_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogoProyecto/CatalogoPorIdPeliculaResponse" message="tns:ICatalogoProyecto_CatalogoPorIdPelicula_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IngrsarVentas">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogoProyecto/IngrsarVentas" message="tns:ICatalogoProyecto_IngrsarVentas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogoProyecto/IngrsarVentasResponse" message="tns:ICatalogoProyecto_IngrsarVentas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarTablaCatalogo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICatalogoProyecto/ActualizarTablaCatalogo" message="tns:ICatalogoProyecto_ActualizarTablaCatalogo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICatalogoProyecto/ActualizarTablaCatalogoResponse" message="tns:ICatalogoProyecto_ActualizarTablaCatalogo_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICatalogoProyecto" type="tns:ICatalogoProyecto">
@@ -80,6 +140,60 @@
     </wsdl:operation>
     <wsdl:operation name="ConsultarSala">
       <soap:operation soapAction="http://tempuri.org/ICatalogoProyecto/ConsultarSala" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IngresarPelicula">
+      <soap:operation soapAction="http://tempuri.org/ICatalogoProyecto/IngresarPelicula" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saludar">
+      <soap:operation soapAction="http://tempuri.org/ICatalogoProyecto/saludar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCine">
+      <soap:operation soapAction="http://tempuri.org/ICatalogoProyecto/ConsultarCine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CatalogoPorIdPelicula">
+      <soap:operation soapAction="http://tempuri.org/ICatalogoProyecto/CatalogoPorIdPelicula" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IngrsarVentas">
+      <soap:operation soapAction="http://tempuri.org/ICatalogoProyecto/IngrsarVentas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarTablaCatalogo">
+      <soap:operation soapAction="http://tempuri.org/ICatalogoProyecto/ActualizarTablaCatalogo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

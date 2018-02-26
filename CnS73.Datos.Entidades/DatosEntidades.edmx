@@ -10,20 +10,33 @@
             <PropertyRef Name="IDPELICULA" />
           </Key>
           <Property Name="IDPELICULA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
           <Property Name="APODO" Type="varchar" MaxLength="50" />
           <Property Name="CODIGOPILI" Type="varchar" MaxLength="50" />
           <Property Name="ESTADO" Type="varchar" MaxLength="5" />
+          <Property Name="PRECIO" Type="decimal" Precision="18" Scale="2" />
           <Property Name="IDTIPOPELICULA" Type="int" />
           <Property Name="URL" Type="varchar" MaxLength="50" />
           <Property Name="IDSALA" Type="int" />
           <Property Name="FECHADESDE" Type="datetime" />
           <Property Name="FECHAHASTA" Type="datetime" />
-          <Property Name="HORADESDE" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="HORAHASTA" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="HORADESDE" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="HORAHASTA" Type="decimal" Precision="18" Scale="2" />
           <Property Name="NUMEROENTRADAS" Type="int" />
           <Property Name="IDFUNCION" Type="int" />
           <Property Name="NUMEROENTRADASDISPO" Type="int" />
+          <Property Name="IDCINE" Type="int" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="800" />
+          <Property Name="DURACION" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="EM_CINE">
+          <Key>
+            <PropertyRef Name="IDCINE" />
+          </Key>
+          <Property Name="IDCINE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRECOMPLEJO" Type="varchar" MaxLength="50" />
+          <Property Name="RUC" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="EM_SALA">
           <Key>
@@ -33,6 +46,18 @@
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
           <Property Name="ESTADO" Type="varchar" MaxLength="5" />
         </EntityType>
+        <EntityType Name="EM_TABLAVENTAS">
+          <Key>
+            <PropertyRef Name="IDVENTA" />
+          </Key>
+          <Property Name="IDVENTA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRECLIENTE" Type="varchar" MaxLength="50" />
+          <Property Name="NUMEROENTRADAS" Type="int" />
+          <Property Name="IDPELICULA" Type="int" />
+          <Property Name="ID SALA" Type="int" />
+          <Property Name="TOTALPAGAR" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IDTIPOPELICULA" Type="int" />
+        </EntityType>
         <EntityType Name="EM_TIPOPELICULA1">
           <Key>
             <PropertyRef Name="IDTIPOPELICULA" />
@@ -41,6 +66,18 @@
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
           <Property Name="ESTADO" Type="varchar" MaxLength="5" />
         </EntityType>
+        <Association Name="FK_EM_CATALOGO_EM_CINE">
+          <End Role="EM_CINE" Type="Self.EM_CINE" Multiplicity="0..1" />
+          <End Role="EM_CATALOGO" Type="Self.EM_CATALOGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EM_CINE">
+              <PropertyRef Name="IDCINE" />
+            </Principal>
+            <Dependent Role="EM_CATALOGO">
+              <PropertyRef Name="IDCINE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EM_CATALOGO_EM_SALA">
           <End Role="EM_SALA" Type="Self.EM_SALA" Multiplicity="0..1" />
           <End Role="EM_CATALOGO" Type="Self.EM_CATALOGO" Multiplicity="*" />
@@ -65,10 +102,52 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EM_TABLAVENTAS_EM_CATALOGO">
+          <End Role="EM_CATALOGO" Type="Self.EM_CATALOGO" Multiplicity="0..1" />
+          <End Role="EM_TABLAVENTAS" Type="Self.EM_TABLAVENTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EM_CATALOGO">
+              <PropertyRef Name="IDPELICULA" />
+            </Principal>
+            <Dependent Role="EM_TABLAVENTAS">
+              <PropertyRef Name="IDPELICULA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EM_TABLAVENTAS_EM_SALA">
+          <End Role="EM_SALA" Type="Self.EM_SALA" Multiplicity="0..1" />
+          <End Role="EM_TABLAVENTAS" Type="Self.EM_TABLAVENTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EM_SALA">
+              <PropertyRef Name="IDSALA" />
+            </Principal>
+            <Dependent Role="EM_TABLAVENTAS">
+              <PropertyRef Name="ID SALA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EM_TABLAVENTAS_EM_TIPOPELICULA1">
+          <End Role="EM_TIPOPELICULA1" Type="Self.EM_TIPOPELICULA1" Multiplicity="0..1" />
+          <End Role="EM_TABLAVENTAS" Type="Self.EM_TABLAVENTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EM_TIPOPELICULA1">
+              <PropertyRef Name="IDTIPOPELICULA" />
+            </Principal>
+            <Dependent Role="EM_TABLAVENTAS">
+              <PropertyRef Name="IDTIPOPELICULA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Cn_S73ModelModeloEntidadesDatosStoreContainer">
           <EntitySet Name="EM_CATALOGO" EntityType="Self.EM_CATALOGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EM_CINE" EntityType="Self.EM_CINE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EM_SALA" EntityType="Self.EM_SALA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EM_TABLAVENTAS" EntityType="Self.EM_TABLAVENTAS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EM_TIPOPELICULA1" EntityType="Self.EM_TIPOPELICULA1" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EM_CATALOGO_EM_CINE" Association="Self.FK_EM_CATALOGO_EM_CINE">
+            <End Role="EM_CINE" EntitySet="EM_CINE" />
+            <End Role="EM_CATALOGO" EntitySet="EM_CATALOGO" />
+          </AssociationSet>
           <AssociationSet Name="FK_EM_CATALOGO_EM_SALA" Association="Self.FK_EM_CATALOGO_EM_SALA">
             <End Role="EM_SALA" EntitySet="EM_SALA" />
             <End Role="EM_CATALOGO" EntitySet="EM_CATALOGO" />
@@ -77,6 +156,18 @@
             <End Role="EM_TIPOPELICULA1" EntitySet="EM_TIPOPELICULA1" />
             <End Role="EM_CATALOGO" EntitySet="EM_CATALOGO" />
           </AssociationSet>
+          <AssociationSet Name="FK_EM_TABLAVENTAS_EM_CATALOGO" Association="Self.FK_EM_TABLAVENTAS_EM_CATALOGO">
+            <End Role="EM_CATALOGO" EntitySet="EM_CATALOGO" />
+            <End Role="EM_TABLAVENTAS" EntitySet="EM_TABLAVENTAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EM_TABLAVENTAS_EM_SALA" Association="Self.FK_EM_TABLAVENTAS_EM_SALA">
+            <End Role="EM_SALA" EntitySet="EM_SALA" />
+            <End Role="EM_TABLAVENTAS" EntitySet="EM_TABLAVENTAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EM_TABLAVENTAS_EM_TIPOPELICULA1" Association="Self.FK_EM_TABLAVENTAS_EM_TIPOPELICULA1">
+            <End Role="EM_TIPOPELICULA1" EntitySet="EM_TIPOPELICULA1" />
+            <End Role="EM_TABLAVENTAS" EntitySet="EM_TABLAVENTAS" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -84,8 +175,14 @@
       <Schema Namespace="Cn_S73Model.Modelo.Entidades.Datos" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Cn_S73Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EM_CATALOGO" EntityType="Cn_S73Model.Modelo.Entidades.Datos.EM_CATALOGO" />
+          <EntitySet Name="EM_CINE" EntityType="Cn_S73Model.Modelo.Entidades.Datos.EM_CINE" />
           <EntitySet Name="EM_SALA" EntityType="Cn_S73Model.Modelo.Entidades.Datos.EM_SALA" />
+          <EntitySet Name="EM_TABLAVENTAS" EntityType="Cn_S73Model.Modelo.Entidades.Datos.EM_TABLAVENTAS" />
           <EntitySet Name="EM_TIPOPELICULA1" EntityType="Cn_S73Model.Modelo.Entidades.Datos.EM_TIPOPELICULA1" />
+          <AssociationSet Name="FK_EM_CATALOGO_EM_CINE" Association="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_CATALOGO_EM_CINE">
+            <End Role="EM_CINE" EntitySet="EM_CINE" />
+            <End Role="EM_CATALOGO" EntitySet="EM_CATALOGO" />
+          </AssociationSet>
           <AssociationSet Name="FK_EM_CATALOGO_EM_SALA" Association="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_CATALOGO_EM_SALA">
             <End Role="EM_SALA" EntitySet="EM_SALA" />
             <End Role="EM_CATALOGO" EntitySet="EM_CATALOGO" />
@@ -94,28 +191,56 @@
             <End Role="EM_TIPOPELICULA1" EntitySet="EM_TIPOPELICULA1" />
             <End Role="EM_CATALOGO" EntitySet="EM_CATALOGO" />
           </AssociationSet>
+          <AssociationSet Name="FK_EM_TABLAVENTAS_EM_CATALOGO" Association="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_TABLAVENTAS_EM_CATALOGO">
+            <End Role="EM_CATALOGO" EntitySet="EM_CATALOGO" />
+            <End Role="EM_TABLAVENTAS" EntitySet="EM_TABLAVENTAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EM_TABLAVENTAS_EM_SALA" Association="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_TABLAVENTAS_EM_SALA">
+            <End Role="EM_SALA" EntitySet="EM_SALA" />
+            <End Role="EM_TABLAVENTAS" EntitySet="EM_TABLAVENTAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EM_TABLAVENTAS_EM_TIPOPELICULA1" Association="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_TABLAVENTAS_EM_TIPOPELICULA1">
+            <End Role="EM_TIPOPELICULA1" EntitySet="EM_TIPOPELICULA1" />
+            <End Role="EM_TABLAVENTAS" EntitySet="EM_TABLAVENTAS" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="EM_CATALOGO">
           <Key>
             <PropertyRef Name="IDPELICULA" />
           </Key>
           <Property Name="IDPELICULA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="APODO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CODIGOPILI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ESTADO" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PRECIO" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="IDTIPOPELICULA" Type="Int32" />
           <Property Name="URL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IDSALA" Type="Int32" />
           <Property Name="FECHADESDE" Type="DateTime" Precision="3" />
           <Property Name="FECHAHASTA" Type="DateTime" Precision="3" />
-          <Property Name="HORADESDE" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="HORAHASTA" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="HORADESDE" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="HORAHASTA" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="NUMEROENTRADAS" Type="Int32" />
           <Property Name="IDFUNCION" Type="Int32" />
           <Property Name="NUMEROENTRADASDISPO" Type="Int32" />
+          <Property Name="IDCINE" Type="Int32" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="DURACION" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="EM_CINE" Relationship="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_CATALOGO_EM_CINE" FromRole="EM_CATALOGO" ToRole="EM_CINE" />
           <NavigationProperty Name="EM_SALA" Relationship="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_CATALOGO_EM_SALA" FromRole="EM_CATALOGO" ToRole="EM_SALA" />
           <NavigationProperty Name="EM_TIPOPELICULA1" Relationship="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_CATALOGO_EM_TIPOPELICULA1" FromRole="EM_CATALOGO" ToRole="EM_TIPOPELICULA1" />
+          <NavigationProperty Name="EM_TABLAVENTAS" Relationship="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_TABLAVENTAS_EM_CATALOGO" FromRole="EM_CATALOGO" ToRole="EM_TABLAVENTAS" />
+        </EntityType>
+        <EntityType Name="EM_CINE">
+          <Key>
+            <PropertyRef Name="IDCINE" />
+          </Key>
+          <Property Name="IDCINE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRECOMPLEJO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RUC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EM_CATALOGO" Relationship="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_CATALOGO_EM_CINE" FromRole="EM_CINE" ToRole="EM_CATALOGO" />
         </EntityType>
         <EntityType Name="EM_SALA">
           <Key>
@@ -125,6 +250,22 @@
           <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ESTADO" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="EM_CATALOGO" Relationship="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_CATALOGO_EM_SALA" FromRole="EM_SALA" ToRole="EM_CATALOGO" />
+          <NavigationProperty Name="EM_TABLAVENTAS" Relationship="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_TABLAVENTAS_EM_SALA" FromRole="EM_SALA" ToRole="EM_TABLAVENTAS" />
+        </EntityType>
+        <EntityType Name="EM_TABLAVENTAS">
+          <Key>
+            <PropertyRef Name="IDVENTA" />
+          </Key>
+          <Property Name="IDVENTA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRECLIENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NUMEROENTRADAS" Type="Int32" />
+          <Property Name="IDPELICULA" Type="Int32" />
+          <Property Name="ID_SALA" Type="Int32" />
+          <Property Name="TOTALPAGAR" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IDTIPOPELICULA" Type="Int32" />
+          <NavigationProperty Name="EM_CATALOGO" Relationship="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_TABLAVENTAS_EM_CATALOGO" FromRole="EM_TABLAVENTAS" ToRole="EM_CATALOGO" />
+          <NavigationProperty Name="EM_SALA" Relationship="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_TABLAVENTAS_EM_SALA" FromRole="EM_TABLAVENTAS" ToRole="EM_SALA" />
+          <NavigationProperty Name="EM_TIPOPELICULA1" Relationship="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_TABLAVENTAS_EM_TIPOPELICULA1" FromRole="EM_TABLAVENTAS" ToRole="EM_TIPOPELICULA1" />
         </EntityType>
         <EntityType Name="EM_TIPOPELICULA1">
           <Key>
@@ -134,7 +275,20 @@
           <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ESTADO" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="EM_CATALOGO" Relationship="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_CATALOGO_EM_TIPOPELICULA1" FromRole="EM_TIPOPELICULA1" ToRole="EM_CATALOGO" />
+          <NavigationProperty Name="EM_TABLAVENTAS" Relationship="Cn_S73Model.Modelo.Entidades.Datos.FK_EM_TABLAVENTAS_EM_TIPOPELICULA1" FromRole="EM_TIPOPELICULA1" ToRole="EM_TABLAVENTAS" />
         </EntityType>
+        <Association Name="FK_EM_CATALOGO_EM_CINE">
+          <End Type="Cn_S73Model.Modelo.Entidades.Datos.EM_CINE" Role="EM_CINE" Multiplicity="0..1" />
+          <End Type="Cn_S73Model.Modelo.Entidades.Datos.EM_CATALOGO" Role="EM_CATALOGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EM_CINE">
+              <PropertyRef Name="IDCINE" />
+            </Principal>
+            <Dependent Role="EM_CATALOGO">
+              <PropertyRef Name="IDCINE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EM_CATALOGO_EM_SALA">
           <End Type="Cn_S73Model.Modelo.Entidades.Datos.EM_SALA" Role="EM_SALA" Multiplicity="0..1" />
           <End Type="Cn_S73Model.Modelo.Entidades.Datos.EM_CATALOGO" Role="EM_CATALOGO" Multiplicity="*" />
@@ -159,7 +313,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_EM_TABLAVENTAS_EM_CATALOGO">
+          <End Type="Cn_S73Model.Modelo.Entidades.Datos.EM_CATALOGO" Role="EM_CATALOGO" Multiplicity="0..1" />
+          <End Type="Cn_S73Model.Modelo.Entidades.Datos.EM_TABLAVENTAS" Role="EM_TABLAVENTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EM_CATALOGO">
+              <PropertyRef Name="IDPELICULA" />
+            </Principal>
+            <Dependent Role="EM_TABLAVENTAS">
+              <PropertyRef Name="IDPELICULA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EM_TABLAVENTAS_EM_SALA">
+          <End Type="Cn_S73Model.Modelo.Entidades.Datos.EM_SALA" Role="EM_SALA" Multiplicity="0..1" />
+          <End Type="Cn_S73Model.Modelo.Entidades.Datos.EM_TABLAVENTAS" Role="EM_TABLAVENTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EM_SALA">
+              <PropertyRef Name="IDSALA" />
+            </Principal>
+            <Dependent Role="EM_TABLAVENTAS">
+              <PropertyRef Name="ID_SALA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EM_TABLAVENTAS_EM_TIPOPELICULA1">
+          <End Type="Cn_S73Model.Modelo.Entidades.Datos.EM_TIPOPELICULA1" Role="EM_TIPOPELICULA1" Multiplicity="0..1" />
+          <End Type="Cn_S73Model.Modelo.Entidades.Datos.EM_TABLAVENTAS" Role="EM_TABLAVENTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EM_TIPOPELICULA1">
+              <PropertyRef Name="IDTIPOPELICULA" />
+            </Principal>
+            <Dependent Role="EM_TABLAVENTAS">
+              <PropertyRef Name="IDTIPOPELICULA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -168,6 +358,9 @@
           <EntitySetMapping Name="EM_CATALOGO">
             <EntityTypeMapping TypeName="Cn_S73Model.Modelo.Entidades.Datos.EM_CATALOGO">
               <MappingFragment StoreEntitySet="EM_CATALOGO">
+                <ScalarProperty Name="DURACION" ColumnName="DURACION" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="IDCINE" ColumnName="IDCINE" />
                 <ScalarProperty Name="NUMEROENTRADASDISPO" ColumnName="NUMEROENTRADASDISPO" />
                 <ScalarProperty Name="IDFUNCION" ColumnName="IDFUNCION" />
                 <ScalarProperty Name="NUMEROENTRADAS" ColumnName="NUMEROENTRADAS" />
@@ -178,11 +371,22 @@
                 <ScalarProperty Name="IDSALA" ColumnName="IDSALA" />
                 <ScalarProperty Name="URL" ColumnName="URL" />
                 <ScalarProperty Name="IDTIPOPELICULA" ColumnName="IDTIPOPELICULA" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
                 <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="CODIGOPILI" ColumnName="CODIGOPILI" />
                 <ScalarProperty Name="APODO" ColumnName="APODO" />
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="IDPELICULA" ColumnName="IDPELICULA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EM_CINE">
+            <EntityTypeMapping TypeName="Cn_S73Model.Modelo.Entidades.Datos.EM_CINE">
+              <MappingFragment StoreEntitySet="EM_CINE">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="RUC" ColumnName="RUC" />
+                <ScalarProperty Name="NOMBRECOMPLEJO" ColumnName="NOMBRECOMPLEJO" />
+                <ScalarProperty Name="IDCINE" ColumnName="IDCINE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -192,6 +396,19 @@
                 <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
                 <ScalarProperty Name="IDSALA" ColumnName="IDSALA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EM_TABLAVENTAS">
+            <EntityTypeMapping TypeName="Cn_S73Model.Modelo.Entidades.Datos.EM_TABLAVENTAS">
+              <MappingFragment StoreEntitySet="EM_TABLAVENTAS">
+                <ScalarProperty Name="IDTIPOPELICULA" ColumnName="IDTIPOPELICULA" />
+                <ScalarProperty Name="TOTALPAGAR" ColumnName="TOTALPAGAR" />
+                <ScalarProperty Name="ID_SALA" ColumnName="ID SALA" />
+                <ScalarProperty Name="IDPELICULA" ColumnName="IDPELICULA" />
+                <ScalarProperty Name="NUMEROENTRADAS" ColumnName="NUMEROENTRADAS" />
+                <ScalarProperty Name="NOMBRECLIENTE" ColumnName="NOMBRECLIENTE" />
+                <ScalarProperty Name="IDVENTA" ColumnName="IDVENTA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

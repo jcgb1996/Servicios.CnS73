@@ -12,19 +12,18 @@ namespace CnS73.Datos.Entidades
     using System;
     using System.Collections.Generic;
     
-    public partial class EM_TIPOPELICULA1
+    public partial class EM_CINE
     {
-        public EM_TIPOPELICULA1()
+        public EM_CINE()
         {
             this.EM_CATALOGO = new HashSet<EM_CATALOGO>();
-            this.EM_TABLAVENTAS = new HashSet<EM_TABLAVENTAS>();
         }
     
-        public int IDTIPOPELICULA { get; set; }
-        public string DESCRIPCION { get; set; }
+        public int IDCINE { get; set; }
+        public string NOMBRECOMPLEJO { get; set; }
+        public string RUC { get; set; }
         public string ESTADO { get; set; }
     
         public virtual ICollection<EM_CATALOGO> EM_CATALOGO { get; set; }
-        public virtual ICollection<EM_TABLAVENTAS> EM_TABLAVENTAS { get; set; }
     }
 }

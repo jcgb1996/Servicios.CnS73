@@ -1,7 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mod_Dashboard/PrincipalMaster.Master" AutoEventWireup="true" CodeBehind="IngresarPelicula.aspx.cs" Inherits="Web.Cine.ProyectoS73.Mod_Cartelera.IngresarPelicula" %>
 
 <%@ Register Assembly="DevExpress.Web.v14.2, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+<%@ Register Src="~/User Control/UcNotificaciones.ascx" TagPrefix="uc1" TagName="UcNotificaciones" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
     <style type="text/css">
         html {
             font-size: 16px;
@@ -96,8 +100,9 @@
             $('.capaModal').css("display", "none");
         });
 
+
         function Ingresar() {
-           // var lala = LblLogo.val();
+            // var lala = LblLogo.val();
             // alert(lala);
 
             ASPxCallbackGuardar.PerformCallback();
@@ -121,31 +126,35 @@
             LoadingPanel.Hide();
         }
 
+        function OnKeyPress(s, e) {
+            var theEvent = e.htmlEvent || window.event;
+            var key = theEvent.keyCode || theEvent.which;
+            var txt = s.GetText();
+            if (key != 8 || key != 13)
+                txt += String.fromCharCode(key);
+            if (key == 13)
+                theEvent.returnValue = false
+        }
+
 
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
     <div class="container">
         <div class="form_top">
             <h2 id="titulo">CREAR <span>PELICULA</span></h2>
             <br>
             <br>
-            <div class="capaModal">
-                <div class="capaContent">
-                    <%-- <img src="../imagenes/cargando2.gif" alt="Loading" />--%>
-                    <label style="color: coral;" id="textEspere" visible="true" runat="server">
-                        TODOS LOS CAMPOS SON OBLIGATORIOS<span></span></label>
-                </div>
-            </div>
-
-
+            <uc1:UcNotificaciones runat="server" ID="UcNotificaciones" />
             <table>
                 <tr>
                     <dx:ASPxButton ID="IngresarNuevo" AutoPostBack="false" CssClass="input" runat="server" Text="Ingresar Una Nueva Pelicula">
-                        <ClientSideEvents Click="function Guardar(){
-                            GuardarPeli();
-                           
-                            }" />
+                        <ClientSideEvents Click="function IngresarNuevo(){
+                           PanelIngreso.PerformCallback(2);
+                           LoadingPanel.Show();
+                           }" />
                     </dx:ASPxButton>
                 </tr>
             </table>
@@ -163,7 +172,7 @@
 
                                 </td>
                                 <td>
-                                    <dx:ASPxComboBox NullText="- Seleccione -" Visible="true" TabIndex="24" ID="CmbSelecPeli" AutoPostBack="false" runat="server" CssClass="input" ValueType="System.String">
+                                    <dx:ASPxComboBox ID="CmbSelecPelicula" CssClass="input" AutoPostBack="false" NullText="- SELECCIONE -" runat="server" ValueType="System.String">
                                         <ClearButton Visibility="True">
                                         </ClearButton>
                                         <ClientSideEvents SelectedIndexChanged="function Seleccion(){
@@ -172,6 +181,7 @@
                                 }" />
 
                                     </dx:ASPxComboBox>
+
 
                                 </td>
                             </tr>
@@ -182,11 +192,11 @@
                                 runat="server" id="ImgLogo" />
                         </div>
                         <div class="control-group">
-                            <asp:Label ID="LblLogo" Visible="true" runat="server" Text="Logo:" CssClass="control-label"></asp:Label>                            
+                            <asp:Label ID="LblLogo" Visible="true" runat="server" Text="Logo:" CssClass="control-label"></asp:Label>
 
                             <div class="">
                                 <div>
-                                    <asp:FileUpload accept="jpg"  ID="FileUpload1" runat="server"  maxlength="3" />
+                                    <asp:FileUpload accept="jpg" ID="FileUpload1" runat="server" maxlength="3" />
                                 </div>
                             </div>
 
@@ -198,11 +208,12 @@
 
                                 <td>
                                     <dx:ASPxLabel ID="LblSalas" Visible="true" CssClass="input" runat="server" Text="Salas: "></dx:ASPxLabel>
-                                    <%--<dx:ASPxLabel ID="lblSalas" Visible="true" CssClass="input" runat="server" Text="Salas: "></dx:ASPxLabel>--%>
+
 
                                 </td>
                                 <td>
-                                    <dx:ASPxComboBox ID="CmbSalas" ClientInstanceName="CmbSalas" CssClass="input" NullText="- SELECCIONE -" AutoPostBack="false" Visibility="True" runat="server" ValueType="System.String"></dx:ASPxComboBox>
+                                    <dx:ASPxComboBox ID="CmbSala" ClientInstanceName="CmbSala" CssClass="input" NullText="- SELECCIONE -" AutoPostBack="false" runat="server" ValueType="System.String"></dx:ASPxComboBox>
+
                                 </td>
                             </tr>
                             <tr>
@@ -210,42 +221,40 @@
                                     <dx:ASPxLabel ID="lablNombre" runat="server" CssClass="input" Text="Nombre"></dx:ASPxLabel>
                                 </td>
                                 <td>
-                                    <dx:ASPxTextBox ID="TextNombre" ClientInstanceName="TextNombre" Native="true" AutoPostBack="false" CssClass="input" runat="server" Width="170px"></dx:ASPxTextBox>
+                                    <dx:ASPxTextBox ID="ASPxTextBox1" CssClass="input" Visible="true" Enabled="true" AutoPostBack="false" runat="server" Width="170px"></dx:ASPxTextBox>
                                 </td>
                                 <td>
                                     <dx:ASPxLabel ID="lblApodo" CssClass="input" runat="server" Text="Apodo:"></dx:ASPxLabel>
                                 </td>
 
                                 <td>
-                                    <dx:ASPxTextBox ID="TextApodo" ClientInstanceName="TextApodo" AutoPostBack="false" CssClass="input" runat="server" Width="170px"></dx:ASPxTextBox>
+                                    <dx:ASPxTextBox ID="ASPxTextBox2" CssClass="input" Visible="true" Enabled="true" AutoPostBack="false" runat="server" Width="150px"></dx:ASPxTextBox>
                                 </td>
 
                             </tr>
                             <tr>
                                 <td>
-                                    <dx:ASPxLabel ID="lblTipoPeli" CssClass="input" runat="server" Text="Tipo Pelicula"></dx:ASPxLabel>
+                                    <dx:ASPxLabel ID="lblTipoPeli" Visible="true" CssClass="input" runat="server" Text="Tipo Pelicula"></dx:ASPxLabel>
 
                                 </td>
                                 <td>
-                                    <dx:ASPxComboBox ID="CmbTipoPeli" ClientInstanceName="CmbTipoPeli" AutoPostBack="false" runat="server"
-                                        CssClass="input" NullText="- Seleccione -" TabIndex="24" Width="170px" ValueType="System.String">
-                                    </dx:ASPxComboBox>
+                                    <dx:ASPxComboBox ID="CmbTipoPelicula" CssClass="input" Visible="true" Enabled="true" NullText="- SELECCIONE -" runat="server" ValueType="System.String"></dx:ASPxComboBox>
                                 </td>
                                 <td>
-                                    <dx:ASPxLabel ID="ASPxLabel1" CssClass="input" runat="server" Text="Estado"></dx:ASPxLabel>
+                                    <dx:ASPxLabel ID="ASPxLabel1" Visible="true" CssClass="input" runat="server" Text="Estado"></dx:ASPxLabel>
 
                                 </td>
+
                                 <td>
-                                    <dx:ASPxComboBox Width="98%" Height="30" NullText="-Seleccione-" ID="cmbEstado" ClientInstanceName="cmbEstado"
-                                        AutoPostBack="false" CssClass="input" runat="server" ValueType="System.String" TabIndex="24">
+                                    <dx:ASPxComboBox ID="CmbEstados" CssClass="input" Visible="true" Enabled="true" ClientInstanceName="CmbEstados" Width="98%" Height="30" NullText="- SELECCIONE -" runat="server" ValueType="System.String">
                                         <ClearButton Visibility="True">
                                         </ClearButton>
                                         <Items>
                                             <dx:ListEditItem Text="ACTIVO" Value="A" />
                                             <dx:ListEditItem Text="INACTIVO" Value="I" />
                                         </Items>
-                                    </dx:ASPxComboBox>
 
+                                    </dx:ASPxComboBox>
 
                                 </td>
                                 <td></td>
@@ -253,46 +262,88 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <dx:ASPxLabel Visible="false" ID="LblFechaDesde" CssClass="input" runat="server" Text="Desde"></dx:ASPxLabel>
+                                    <dx:ASPxLabel Visible="true" ID="LblFechaDesde" CssClass="input" runat="server" Text="Desde"></dx:ASPxLabel>
                                 </td>
                                 <td>
-                                    <dx:ASPxDateEdit Visible="false" NullText="__/__/__" ID="FDesde" CssClass="input" ClientInstanceName="FDesde" AutoPostBack="false" runat="server"></dx:ASPxDateEdit>
+                                    <dx:ASPxDateEdit Visible="true" NullText="__/__/__" ID="FDesde" CssClass="input" ClientInstanceName="FDesde" AutoPostBack="false" runat="server"></dx:ASPxDateEdit>
                                 </td>
                                 <td>
-                                    <dx:ASPxLabel Visible="false" ID="LblFechaHasta" CssClass="input" runat="server" Text="Hasta"></dx:ASPxLabel>
+                                    <dx:ASPxLabel Visible="true" ID="LblFechaHasta" CssClass="input" runat="server" Text="Hasta"></dx:ASPxLabel>
                                 </td>
                                 <td>
-                                    <dx:ASPxDateEdit Visible="false" NullText="__/__/__" ID="Fhasta" CssClass="input" ClientInstanceName="Fhasta" AutoPostBack="false" runat="server"></dx:ASPxDateEdit>
+                                    <dx:ASPxDateEdit Visible="true" NullText="__/__/__" ID="Fhasta" CssClass="input" ClientInstanceName="Fhasta" AutoPostBack="false" runat="server"></dx:ASPxDateEdit>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>
-                                    <dx:ASPxLabel Visible="false" ID="HDesde" ClientInstanceName="HDesde" CssClass="input" runat="server" Text="H. Desde"></dx:ASPxLabel>
+                                    <dx:ASPxLabel Visible="true" ID="HDesde" ClientInstanceName="HDesde" CssClass="input" runat="server" Text="H. Desde"></dx:ASPxLabel>
 
                                 </td>
 
                                 <td>
-                                    <dx:ASPxTextBox Visible="false" NullText="00:00" ID="HoraDesde" ClientInstanceName="HoraDesde" AutoPostBack="false" CssClass="input" runat="server" Width="70px"></dx:ASPxTextBox>
+                                    <dx:ASPxTimeEdit ID="HoraDesdes2" DateTime="2009-11-01 00:00" ClientSideEvents-KeyDown="OnKeyPress" CssClass="input" Enabled="true" AutoPostBack="false" Width="170px" runat="server"></dx:ASPxTimeEdit>
+                                    <%--<dx:ASPxTextBox ID="HoraDesdes" CssClass="input" Enabled="true" AutoPostBack="false" NullText="00:00" runat="server" Width="170px"></dx:ASPxTextBox>--%>
                                 </td>
                                 <td>
-                                    <dx:ASPxLabel Visible="false" ID="HHasta" CssClass="input" runat="server" Text="H.Hasta"></dx:ASPxLabel>
+                                    <dx:ASPxLabel Visible="true" ID="HHasta" CssClass="input" runat="server" Text="H.Hasta"></dx:ASPxLabel>
                                 </td>
                                 <td>
-                                    <dx:ASPxTextBox Visible="false" NullText="00:00" ID="HoraHasta" ClientInstanceName="HoraHasta" AutoPostBack="false" CssClass="input" runat="server" Width="70px"></dx:ASPxTextBox>
+                                    <dx:ASPxTimeEdit ID="HoraHastas1" ClientSideEvents-KeyDown="OnKeyPress" AutoPostBack="false" CssClass="input" runat="server" Width="170px" DateTime="2009-11-01 00:00"></dx:ASPxTimeEdit>
+                                    <%--<dx:ASPxTextBox ID="HoraHastas" ClientSideEvents-KeyDown="OnKeyPress" CssClass="input" Enabled="true" NullText="00:00" AutoPostBack="false" runat="server" Width="170px"></dx:ASPxTextBox>--%>
+
                                 </td>
                             </tr>
                             <tr>
-
                                 <td>
-                                    <dx:ASPxButton ID="registrar" OnClick="registrar_Click2"  ClientInstanceName="registrar" AutoPostBack="false" CssClass="input" runat="server" Text="REGISTRAR">
-                                        
+                                    <dx:ASPxLabel Visible="true" ID="ASPxLabel2" CssClass="input" runat="server" Text="N. Entradas"></dx:ASPxLabel>
+                                </td>
+                                <td>
+
+                                    <dx:ASPxTextBox ID="NumeroEntradas" CssClass="input" Enabled="true" NullText="0" AutoPostBack="false" runat="server" Width="170px"></dx:ASPxTextBox>
+
+                                </td>
+                                <td>
+                                    <dx:ASPxLabel runat="server" ID="lblDuracion" ClientInstanceName="lblDuracion" CssClass="input" Text="Duracion: ">
+                                    </dx:ASPxLabel>
+                                </td>
+                                <td>
+                                    <dx:ASPxTimeEdit ID="Duracion1" ClientSideEvents-KeyDown="OnKeyPress" AutoPostBack="false" CssClass="input" runat="server" Width="170px" DateTime="2009-11-01 00:00"></dx:ASPxTimeEdit>
+                                    <%-- <dx:ASPxDateEdit ID="Duracion" ClientInstanceName="Duracion" AutoPostBack="false" runat="server" Width="170px" DateTime="2009-11-01 00:00"></dx:ASPxDateEdit>--%>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                
+                                <td>
+                                    
+                                <dx:ASPxLabel ID ="lblPrecioPelicula" runat="server" CssClass="input" Text="Pre. U.:" >
+                                    
+                                </dx:ASPxLabel>
+                                </td>
+                                <td>
+                                    
+                                <dx:ASPxSpinEdit ID="SpinValor" runat="server" CssClass="input" Number="0">
+                                 </dx:ASPxSpinEdit>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <dx:ASPxLabel Visible="true" ID="lblDescrip" ClientInstanceName="lblDescrip" CssClass="input" runat="server" Text="Descripcion: "></dx:ASPxLabel>
+                                </td>
+                                <td>
+                                    <textarea id="Descripcion" class="input" runat="server" style="width: 170px; height: 170px;" cols="20" rows="2"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <dx:ASPxButton ID="registrar" OnClick="registrar_Click2" ClientInstanceName="registrar" AutoPostBack="false" CssClass="input" runat="server" Text="REGISTRAR">
                                     </dx:ASPxButton>
                                 </td>
-                                <td>
+                                <%--<td>
                                     <dx:ASPxButton ID="cancelar" AutoPostBack="false" CssClass="input" runat="server" Text="CANCELAR">
                                     </dx:ASPxButton>
-                                </td>
+                                </td>--%>
                             </tr>
 
 
@@ -309,7 +360,7 @@
 
         </div>
 
-        <dx:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel" Modal="true" HorizontalAlign="Center" VerticalAlign="Middle">
+        <dx:ASPxLoadingPanel ID="LoadingPanel" Visible="true" runat="server" ClientInstanceName="LoadingPanel" Modal="true" HorizontalAlign="Center" VerticalAlign="Middle">
             <Image Url="../Imagenes/Loading_icon.gif" Height="50px" Width="80px"></Image>
         </dx:ASPxLoadingPanel>
     </div>

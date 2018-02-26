@@ -40,10 +40,10 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera
                 ViewState["Sala"] = sala;
                 if (sala != null && sala.Count > 0)
                 {
-                    CmbSalas.DataSource = sala;
-                    CmbSalas.ValueField = "IDSALA";
-                    CmbSalas.TextField = "DESCRIPCION";
-                    CmbSalas.DataBind();
+                    CmbSala.DataSource = sala;
+                    CmbSala.ValueField = "IDSALA";
+                    CmbSala.TextField = "DESCRIPCION";
+                    CmbSala.DataBind();
                 }
 
             }catch(Exception ex)
@@ -60,14 +60,14 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera
                 TipoPelicula = consu.ConsultarTipoPelicula();
                 if (TipoPelicula.Count > 0 && TipoPelicula != null)
                 {
-                    CmbTipoPeli.DataSource = TipoPelicula;
-                    CmbTipoPeli.ValueField = "IDTIPOPELICULA";
-                    CmbTipoPeli.TextField = "DESCRIPCION";
-                    CmbTipoPeli.DataBind();
+                    CmbTipoPelicula.DataSource = TipoPelicula;
+                    CmbTipoPelicula.ValueField = "IDTIPOPELICULA";
+                    CmbTipoPelicula.TextField = "DESCRIPCION";
+                    CmbTipoPelicula.DataBind();
                 }
                 else
                 {
-                    CmbTipoPeli.DataSource = null;
+                    CmbTipoPelicula.DataSource = null;
                 }
             }
             catch (Exception ex)
@@ -77,42 +77,30 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera
         }
         public void BloquearControles(bool EsBloquear, int Esnuevo = 0)
         {
-            TextApodo.Enabled = EsBloquear;
-            TextNombre.Enabled = EsBloquear;
-            CmbTipoPeli.Enabled = EsBloquear;
-            cmbEstado.Enabled = EsBloquear;
-            LblLogo.Enabled = EsBloquear;
-            //FupLogo.Enabled = EsBloquear;
-            LblLogo.Visible = EsBloquear;
-            //FupLogo.Visible = EsBloquear;
-            ImgLogo.Visible = Esnuevo == 2 ? false : EsBloquear;
-            CmbSelecPeli.Visible = Esnuevo != 2 ? true : false;
-            LblSelecPeli.Visible = Esnuevo == 2 ? false : EsBloquear;
-            LblFechaDesde.Visible = EsBloquear;
-            FDesde.Visible = EsBloquear;
-            LblFechaHasta.Visible = EsBloquear;
-            Fhasta.Visible = EsBloquear;
-            HDesde.Visible = EsBloquear;
-            HoraDesde.Visible = EsBloquear;
-            HHasta.Visible = EsBloquear;
-            HoraHasta.Visible = EsBloquear;
-            CmbSalas.Visible = EsBloquear;
-            LblSalas.Visible = EsBloquear;
-               
+            registrar.Enabled = Esnuevo!= 0 ? true: false;
+            ImgLogo.Visible = Esnuevo == 2 ? false : true;
+            CmbSelecPelicula.Visible = Esnuevo == 2 ? true : false;
+            CmbSelecPelicula.Visible = Esnuevo == 2 ? false : true;
+            LblSelecPeli.Visible = Esnuevo == 2 ? false : true;
         }
 
         public void LimpiarControles()
         {
-            TextApodo.Text = string.Empty ;
-            TextNombre.Text = string.Empty;
-            CmbTipoPeli.Text = string.Empty;
-            cmbEstado.Text = string.Empty;
+            ASPxTextBox1.Text = string.Empty;
+            ASPxTextBox2.Text = string.Empty;
+            CmbTipoPelicula.Text = string.Empty;
+            CmbEstados.Text = string.Empty;
             FDesde.Text = string.Empty;
             Fhasta.Text = string.Empty;
-            HoraHasta.Text = string.Empty;
-            HoraDesde.Text = string.Empty;
-            CmbSalas.Text = string.Empty;
-            CmbSelecPeli.Text = string.Empty;
+           //HoraHastas.Text = string.Empty;
+           //HoraDesdes.Text = string.Empty;
+            CmbSala.Text = string.Empty;
+            CmbSelecPelicula.Text = string.Empty;
+            NumeroEntradas.Text = string.Empty;
+            HoraHastas1.Text = "00:00";
+            HoraDesdes2.Text = "00:00";
+            Duracion1.Text = "00:00";
+            Descripcion.InnerText = string.Empty;
         }
 
 
@@ -129,11 +117,12 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera
             {
                 foreach(var a in DatosPorPeli)
                 {
-                    TextApodo.Text =  a.APODO;
-                    TextNombre.Text = a.NOMBRE;
-                    CmbTipoPeli.Text = a.TIPOPELICULA;
-                    cmbEstado.Text = a.ESTADO;
-                    CmbSalas.Text = sala.Where(x => x.IDSALA == a.IDSALA).Select(x => x.DESCRIPCION).FirstOrDefault();
+                    ASPxTextBox2.Text =  a.APODO;
+                    ASPxTextBox1.Text = a.NOMBRE;
+                    CmbTipoPelicula.Text = a.TIPOPELICULA;
+                    CmbEstados.Text = a.ESTADO;
+                    CmbSala.Text = sala.Where(x => x.IDSALA == a.IDSALA).Select(x => x.DESCRIPCION).FirstOrDefault();
+                    NumeroEntradas.Text = a.NUMEROENTRADASDISPO + "";
                     var lala = Environment.CurrentDirectory;
                     if (a.URL != null && a.URL != "")
                     {
@@ -144,11 +133,19 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera
                     {
                         this.ImgLogo.Src = "";
                     }
-
+                    SpinValor.Text = a.PRECIO + "";
+                    Descripcion.InnerText = a.DESCRIPCION;
                     FDesde.Date = Convert.ToDateTime(a.FECHADESDE +"");
                     Fhasta.Date = Convert.ToDateTime(a.FECHAHASTA + "");
-                    HoraHasta.Text = a.HORAHASTA + "";
-                    HoraDesde.Text = a.HORADESDE + "";
+                    var HoraH = Convert.ToString(a.HORAHASTA); 
+                    var HoraD = Convert.ToString(a.HORADESDE);
+                    var duracion = Convert.ToString(a.DURACION);
+                    string durac = duracion.Replace(',',':');
+                    string hora = HoraH.Replace(',', ':');
+                    string hora2 = HoraD.Replace(',', ':');
+                    HoraHastas1.Text = hora;
+                    HoraDesdes2.Text = hora2;
+                    Duracion1.Text = durac;
                 }
 
                 CrearDirectorioImagenes();
@@ -180,26 +177,37 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera
             }
     }
 
-        public List<Catalogo> AgregarCampos()
+        public Catalogo AgregarCampos()
         {
-            List<Catalogo> IngresarCatalogo = null;
+            Catalogo IngresarCatalogo = null;
             try
             {
-                IngresarCatalogo = new List<Catalogo>();
-                foreach (var a in IngresarCatalogo)
-                {
-                    a.NOMBRE = TextNombre.Text;
-                    a.APODO = TextApodo.Text;
-                    a.TIPOPELICULA = CmbTipoPeli.Value +"";
-                    a.ESTADO = cmbEstado.Value+"";
-                    a.FECHADESDE = FDesde.Date;
-                    a.FECHAHASTA = Fhasta.Date;
-                    a.HORAHASTA = Convert.ToDecimal(HoraDesde.Text+"".Replace(':','.'));
-                    a.HORAHASTA = Convert.ToDecimal(HoraHasta.Text+"".Replace(':', '.'));
-                }
+                IngresarCatalogo = new Catalogo();
+
                 
+                IngresarCatalogo.NUMEROENTRADAS = Convert.ToInt32(NumeroEntradas.Text);
+                IngresarCatalogo.ESTADO = Convert.ToString(CmbEstados.Value);
+                IngresarCatalogo.IDSALA = Convert.ToInt32(CmbSala.Value);
+                IngresarCatalogo.URL = FileUpload1.FileName + "";
+                IngresarCatalogo.NOMBRE = ASPxTextBox1.Text+"";
+                IngresarCatalogo.APODO = ASPxTextBox2.Text;
+                IngresarCatalogo.IDTIPOPELICULA = Convert.ToInt32(CmbTipoPelicula.Value +"");
+                IngresarCatalogo.ESTADO = CmbEstados.Value+"";
+                IngresarCatalogo.FECHADESDE = FDesde.Date;
+                IngresarCatalogo.FECHAHASTA = Fhasta.Date;
+                IngresarCatalogo.PRECIO = Convert.ToDecimal(SpinValor.Text + "");
+                var HoraD = Convert.ToString(HoraDesdes2.Text);
+                var HoraH = Convert.ToString(HoraHastas1.Text);
+                var duracion = Convert.ToString(Duracion1.Text);
+                string hora = HoraH.Replace(':', ',');
+                string hora2 = HoraD.Replace(':', ',');
+                string durac = duracion.Replace(':', ',');
+                IngresarCatalogo.HORAHASTA = Convert.ToDecimal(hora);
+                IngresarCatalogo.HORADESDE = Convert.ToDecimal(hora2);
+                IngresarCatalogo.DURACION = Convert.ToDecimal(durac);
+                IngresarCatalogo.DESCRIPCION = Descripcion.InnerText;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -207,35 +215,117 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera
         }
         public string GurdarPelicula()
         {
-
+            consu = new Consumo();
             string mensaje = "";
             try
             {
-                String imagen = System.IO.Path.GetExtension(FileUpload1.FileName).ToLower(); 
-                String imagen1 = FileUpload1.FileName;
-                string[] DatosImagen = imagen.Split('.');
-                if (DatosImagen[1] == "jpg" )
+               var text = Descripcion.InnerText; 
+                String imagen = FileUpload1.FileName;
+                string ExtencionImg = System.IO.Path.GetExtension(FileUpload1.FileName).ToUpper();
+
+                if (ASPxTextBox1.Text + "" == "" && ASPxTextBox2.Text + "" == "" && CmbTipoPelicula.Value + "" == "" && CmbEstados.Value + "" == "" && FDesde.Date == Convert.ToDateTime("01/01/0001 0:00:00") && Fhasta.Date == Convert.ToDateTime("01/01/0001 0:00:00"))
                 {
-                    String ruta = Server.MapPath("~/Imagenes/") + imagen1;
-                    if (!File.Exists(ruta))
-                    {
-                        FileUpload1.SaveAs(ruta);
-                        //File.Create(ruta);
-                        List<Catalogo>  Campos = AgregarCampos();
-                    }
-                    else
-                    {
-                        File.Delete(ruta);
-                    }
+
+                    mensaje = "TODOS LOS CAMPOS SON OBLIGATORIOS";
+                    UcNotificaciones.Notificar(TipoNotificacion.Info, mensaje);
                 }
                 else
                 {
-                    mensaje = "SOLO SE ACPTAN IMAGEN CON FORMATO (.JPG, .PENG, JPEG)";
+                    if (Fhasta.Date < DateTime.Today)
+                    {
+                        mensaje = "LA FECHA HASTA NO PUEDE SER MAYOR A LA FECHA DESDE";
+                        UcNotificaciones.Notificar(TipoNotificacion.Info, mensaje);
+                    }                    
+                else
+                    {
+                        if(FDesde.Date < DateTime.Today)
+                        {
+                            mensaje = "LA FECHA DESDE NO PUEDE SER MENOR A LA FECHA ACTUAL DEL SISTEMA";
+                            UcNotificaciones.Notificar(TipoNotificacion.Info, mensaje);
+                        }
+                        else
+                        {
+                            var HoraD = Convert.ToString(HoraDesdes2.Text);
+                            var HoraH = Convert.ToString(HoraHastas1.Text);
+                            var HDuracion = Convert.ToString(Duracion1.Text);
+                            decimal hora = Convert.ToDecimal(HoraH.Replace(':', ','));
+                            decimal hora2 = Convert.ToDecimal(HoraD.Replace(':', ','));
+                            decimal durac = Convert.ToDecimal(HDuracion.Replace(':', ','));
+                            
+                            if (HoraH != "" && HoraD != "")
+                            {
+                                if (hora2 > hora  )
+                                {
+                                    mensaje = "LA HORA DESDE NO PUEDE SER MAYOR A LA HORA HASTA";
+                                    UcNotificaciones.Notificar(TipoNotificacion.Info, mensaje);
+                                }
+                                
+                                else
+                                {
+                                    if (Convert.ToDecimal(SpinValor.Text) > 0)
+                                    {
+                                        if (ExtencionImg.ToUpper() == ".JPG")
+                                        {
+                                            String ruta = Server.MapPath("~/Imagenes/") + imagen;
+                                            if (!File.Exists(ruta))
+                                            {
+                                                FileUpload1.SaveAs(ruta);
+                                                mensaje = consu.IngresarPelicula(AgregarCampos());
+                                            }
+                                            else
+                                            {
+                                                File.Delete(ruta);
+                                                if (!File.Exists(ruta))
+                                                {
+                                                    FileUpload1.SaveAs(ruta);
+                                                    mensaje = consu.IngresarPelicula(AgregarCampos());
+                                                    if (mensaje == "")
+                                                    {
 
+                                                        UcNotificaciones.Notificar(TipoNotificacion.Success, "La pelicula fue registrada con exito!");
+                                                        LimpiarControles();
+                                                        LlenarComboSeleccion();
+                                                    }
+                                                    else
+                                                    {
+                                                        UcNotificaciones.Notificar(TipoNotificacion.Error, mensaje);
+                                                        LimpiarControles();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            mensaje = "SOLO SE ACPTAN IMAGEN CON FORMATO (.JPG, .PENG, JPEG)";
+                                            UcNotificaciones.Notificar(TipoNotificacion.Info, mensaje);
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        mensaje = "INGRESE EL PRECIO UNITARIO DE LA PELICULA";
+                                        UcNotificaciones.Notificar(TipoNotificacion.Info, mensaje);
+                                    }
+                                    
+                                }
+                                
+                            }
+                            else
+                            {
+                                mensaje = "LAS HORAS SON CAMPOS OBLIGATORIOS";
+                                UcNotificaciones.Notificar(TipoNotificacion.Info, mensaje);
+                            }
+                        }
+                        
+                    }
+                
                 }
+
             }
+
             catch (Exception ex)
             {
+                UcNotificaciones.Notificar(TipoNotificacion.Error, ex.Message);
                 return ex.Message;
             }
             
@@ -255,15 +345,15 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera
                 if (cata.Count> 0 && cata != null)
                 {
 
-                    
-                    CmbSelecPeli.DataSource = cata;
-                    CmbSelecPeli.TextField = "NOMBRE";
-                    CmbSelecPeli.ValueField = "IDPELICULA";
-                    CmbSelecPeli.DataBind();
+
+                    CmbSelecPelicula.DataSource = cata;
+                    CmbSelecPelicula.TextField = "NOMBRE";
+                    CmbSelecPelicula.ValueField = "IDPELICULA";
+                    CmbSelecPelicula.DataBind();
                 }
                 else
                 {
-                    CmbSelecPeli.Enabled = false;
+                    CmbSelecPelicula.Enabled = false;
                 }
 
             }catch(Exception ex)
@@ -280,7 +370,7 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera
                 case "1":
                     {
                         BloquearControles(true);
-                        var IdPelicula = CmbSelecPeli.Value;
+                        var IdPelicula = CmbSelecPelicula.Value;
                         LlenarCamposCatalogo(Convert.ToInt32(IdPelicula));
                     }
                     break;
@@ -305,5 +395,7 @@ namespace Web.Cine.ProyectoS73.Mod_Cartelera
         {
              GurdarPelicula();
         }
+
+        
     }
 }

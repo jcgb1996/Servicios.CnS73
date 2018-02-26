@@ -66,7 +66,13 @@
     <Compile Include="EM_CATALOGO.cs">
       <DependentUpon>DatosEntidades.tt</DependentUpon>
     </Compile>
+    <Compile Include="EM_CINE.cs">
+      <DependentUpon>DatosEntidades.tt</DependentUpon>
+    </Compile>
     <Compile Include="EM_SALA.cs">
+      <DependentUpon>DatosEntidades.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EM_TABLAVENTAS.cs">
       <DependentUpon>DatosEntidades.tt</DependentUpon>
     </Compile>
     <Compile Include="EM_TIPOPELICULA1.cs">

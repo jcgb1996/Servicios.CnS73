@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data Contracts\Catalogo.cs" />
+    <Compile Include="Data Contracts\LinqDataTable.cs" />
     <Compile Include="Estados\Estados.cs" />
     <Compile Include="ICatalogoProyecto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,7 +70,6 @@
       <Name>CnS73.Datos.Entidades</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

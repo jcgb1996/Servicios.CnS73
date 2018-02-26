@@ -14,11 +14,17 @@ namespace CnS73.Datos.Entidades
     
     public partial class EM_CATALOGO
     {
+        public EM_CATALOGO()
+        {
+            this.EM_TABLAVENTAS = new HashSet<EM_TABLAVENTAS>();
+        }
+    
         public int IDPELICULA { get; set; }
         public string NOMBRE { get; set; }
         public string APODO { get; set; }
         public string CODIGOPILI { get; set; }
         public string ESTADO { get; set; }
+        public Nullable<decimal> PRECIO { get; set; }
         public Nullable<int> IDTIPOPELICULA { get; set; }
         public string URL { get; set; }
         public Nullable<int> IDSALA { get; set; }
@@ -29,8 +35,13 @@ namespace CnS73.Datos.Entidades
         public Nullable<int> NUMEROENTRADAS { get; set; }
         public Nullable<int> IDFUNCION { get; set; }
         public Nullable<int> NUMEROENTRADASDISPO { get; set; }
+        public Nullable<int> IDCINE { get; set; }
+        public string DESCRIPCION { get; set; }
+        public Nullable<decimal> DURACION { get; set; }
     
+        public virtual EM_CINE EM_CINE { get; set; }
         public virtual EM_SALA EM_SALA { get; set; }
         public virtual EM_TIPOPELICULA1 EM_TIPOPELICULA1 { get; set; }
+        public virtual ICollection<EM_TABLAVENTAS> EM_TABLAVENTAS { get; set; }
     }
 }

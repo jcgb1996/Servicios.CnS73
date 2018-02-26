@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -20,8 +21,21 @@ namespace Servicios.CnS73
         List<TipoPelicula> ConsultarTipoPelicula();
         [OperationContract]
         List<Salas> ConsultarSala();
+
+        [OperationContract]
+        string IngresarPelicula(Catalogo NuevaPelicula);
         [OperationContract]
         void saludar();
+
+        [OperationContract]
+        List<Cine> ConsultarCine();
+
+        [OperationContract]
+        List<Catalogo> CatalogoPorIdPelicula(int idPelicula);
+        [OperationContract]
+        string IngrsarVentas(Ventas Datos);
+        [OperationContract]
+        string ActualizarTablaCatalogo(int numeroEntradas, int idPelicula);
 
     }
 

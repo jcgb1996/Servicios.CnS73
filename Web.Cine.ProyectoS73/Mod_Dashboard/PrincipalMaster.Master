@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CINE S73</title>
+    <title >CINE S73</title>
     <!-- Bootstrap Core CSS -->
     <link href="../Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -26,6 +26,7 @@
 
     <!-- Custom Fonts -->
     <link href="../Content/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://file.myfontastic.com/t5tNwfwUapz4yDzK3B6sfe/icons.css" rel="stylesheet">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -76,27 +77,27 @@
                             <a href="../Mod_Cartelera/IngresarPelicula.aspx"><i class="fa fa-edit fa-fw"></i>Ingresar Pelicula</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i>Ver Cartelera</a>
+                            <a href="../Mod_Cartelera/VerCartelera.aspx"><i class="fa fa-table fa-fw"></i>Ver Cartelera</a>
                         </li>
-                        <li>
+                       <%-- <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i>Ver Asientos Disponibles</a>
 
                             <!-- /.nav-second-level -->
-                        </li>
+                        </li>--%>
                         <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i>Comprar Entradas</span></a>
+                            <a href="../Mod_Cartelera/ComprarEntrada.aspx"><span><i class="fa fa-files-o fa-fw"></i>Comprar Entradas</span></a>
 
                             <!-- /.nav-second-level -->
                         </li>
 
-                        <li>
+                        <%--<li>
                             <a href="#"><i class="fa fa-file-powerpoint-o"></i>Proximos Estrenos</a>
-                        </li>
-                        <li>
+                        </li>--%>
+                        <%--<li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>Cerrar Sesión</a>
 
                             <!-- /.nav-second-level -->
-                        </li>
+                        </li>--%>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
