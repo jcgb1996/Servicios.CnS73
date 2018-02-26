@@ -232,10 +232,10 @@ namespace Servicios.CnS73
                 {
                     int EntradasDispo = db.EM_CATALOGO.Where(x => x.IDPELICULA == idPelicula).Select(x => x.NUMEROENTRADASDISPO).FirstOrDefault() - numeroEntradas ?? 0;
                     //int EntradasDisponibles = EntradasDispo ?? 0 - numeroEntradas;
-                    EM_CATALOGO catalogo = new EM_CATALOGO();
-                    catalogo.IDPELICULA = idPelicula;
+                    EM_CATALOGO catalogo = db.EM_CATALOGO.SingleOrDefault(p => p.IDPELICULA == idPelicula);
+                    //catalogo.IDPELICULA = idPelicula;
                     catalogo.NUMEROENTRADASDISPO = EntradasDispo;
-                    db.EM_CATALOGO.Add(catalogo);
+                    //db.EM_CATALOGO.Add(catalogo);
                     db.SaveChanges();
                     mensaje = "ok";
 
